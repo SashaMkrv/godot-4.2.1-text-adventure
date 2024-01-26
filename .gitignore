@@ -1,0 +1,4 @@
+# Godot 4+ specific ignores
+.godot/
+# please don't commit all of GDUnit4
+addons/

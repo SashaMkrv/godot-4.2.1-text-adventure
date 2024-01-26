@@ -1,0 +1,2 @@
+class_name PlayerAction
+extends RefCounted
