@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://byfsmvgqfe8nb"]
+
+[ext_resource type="Script" path="res://Scripts/TextDirector.gd" id="1_yedsh"]
+[ext_resource type="Script" path="res://Scripts/TokenizeInput.gd" id="2_im88t"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("enterHere")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yedsh")
+enterHere = NodePath("PanelContainer/VBoxContainer/LineEdit")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "What will you do?"
+max_length = 20
+flat = true
+caret_blink = true
+
+[node name="InputTokenizer" type="Node" parent="."]
+script = ExtResource("2_im88t")
+
+[connection signal="text_submitted" from="PanelContainer/VBoxContainer/LineEdit" to="." method="handleActionEnter"]

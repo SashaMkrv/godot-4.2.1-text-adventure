@@ -4,10 +4,10 @@ extends Node
 func tokenizeText(text: String) -> PlayerAction:
 	text = text.strip_edges()
 	if text.length() == 0:
-		return NoneAction.new()
+		return NoneAction.new(&"NONE")
 	if text.length() == 1:
 		return shortcuts(text)
-	return NoneAction.new()
+	return NoneAction.new(&"UNKNOWN")
 
 func shortcuts(text: String) -> PlayerAction:
 	#whatever, pretend i bothered changing things over to chars.
@@ -22,6 +22,6 @@ func shortcuts(text: String) -> PlayerAction:
 			return GoAction.new(&"WEST")
 		"L":
 			# TODO replace with Look action
-			return NoneAction.new()
+			return LookAction.new(&"AROUND")
 		_:
-			return NoneAction.new()
+			return NoneAction.new(&"INVALID")
