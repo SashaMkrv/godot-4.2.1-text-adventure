@@ -1,11 +1,22 @@
 extends Control
 
 @onready var tokenizer := $InputTokenizer as TokenizeInput
+@onready var transformer := $TransformText as TransformText
+
+@onready var game := $GameCoordinator as GameCoordinator
+
 @export var enterHere : LineEdit
+@export var descriptionHere: RichTextLabel
+
+
+func _ready() -> void:
+	game.game_updated.connect(handleGameUpdateEvent)
+
 
 func handleSubmittedInput(text: String) -> void:
 	var action := tokenizer.tokenizeText(text)
 	# the game logic should handle all of the actual consumption of actions, huh
+
 	if action is NoneAction:
 		action = action as NoneAction
 		match action.issue:
@@ -18,11 +29,23 @@ func handleSubmittedInput(text: String) -> void:
 	else:
 		print_debug(action)
 	
+	game.executeCommand(action)
+	
 
 func handleActionEnter(text: String) -> void:
 	handleSubmittedInput(text)
 	enterHere.clear()
 
 
-func handleGameEvent() -> void:
-	print_debug("The game wants to show stuff")
+func handleGameUpdateEvent(view: GameStateView) -> void:
+	if view == null:
+		print_debug("nothing to show")
+		return
+	if descriptionHere == null:
+		print_debug("nowhere to print the update")
+		return
+
+	if transformer != null:
+		descriptionHere.text = transformer.transformText(view.description)
+	else:
+		descriptionHere.text = view.description
