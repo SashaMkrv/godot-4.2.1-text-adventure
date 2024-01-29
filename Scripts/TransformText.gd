@@ -12,7 +12,7 @@ func transformText(text: String) -> String:
 	
 	
 	newText = newText.replace("[", "[b][color=yellow]")
-	newText = newText.replace(">", "[\\color][\\b]")
+	newText = newText.replace(">", "[/color][/b]")
 	
 	print_debug(newText)
 	return newText
