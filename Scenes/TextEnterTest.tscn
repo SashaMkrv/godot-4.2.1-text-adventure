@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://byfsmvgqfe8nb"]
 
-[ext_resource type="Script" path="res://Scripts/TextDirector.gd" id="1_yedsh"]
-[ext_resource type="Script" path="res://Scripts/TokenizeInput.gd" id="2_im88t"]
-[ext_resource type="Script" path="res://Scripts/GameCoordinator.gd" id="3_db8a8"]
-[ext_resource type="Script" path="res://Scripts/TransformText.gd" id="4_ox41l"]
+[ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_yedsh"]
+[ext_resource type="Script" path="res://Scripts/TextHandlers/TokenizeInput.gd" id="2_im88t"]
+[ext_resource type="Script" path="res://Scripts/TopLevel/GameCoordinator.gd" id="3_db8a8"]
+[ext_resource type="Script" path="res://Scripts/TextHandlers/TransformText.gd" id="4_ox41l"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere")]
 layout_mode = 3

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://beimnx40cpxtj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ijdh2gc3qkl" path="res://Assets/gas-station.png" id="1_hj5o7"]
-[ext_resource type="Script" path="res://Scripts/TransformText.gd" id="2_o366n"]
-[ext_resource type="Script" path="res://Scripts/TokenizeInput.gd" id="3_0o6sd"]
+[ext_resource type="Script" path="res://Scripts/TextHandlers/TransformText.gd" id="2_o366n"]
+[ext_resource type="Script" path="res://Scripts/TextHandlers/TokenizeInput.gd" id="3_0o6sd"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
