@@ -18,8 +18,8 @@ func handleSubmittedInput(text: String) -> void:
 	# the game logic should handle all of the actual consumption of actions, huh
 
 	if action is NoneAction:
-		action = action as NoneAction
-		match action.issue:
+		var nothing := action as NoneAction
+		match nothing.issue:
 			&"NONE":
 				print_debug("keep hitting that enter button, bucko!")
 			&"INVALID":
