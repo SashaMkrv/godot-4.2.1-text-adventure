@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqaa6qvw30j88"]
+
+[sub_resource type="Gradient" id="Gradient_u2w5o"]
+colors = PackedColorArray(0.87451, 0.319257, 0.63827, 1, 1, 1, 0.745098, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tagx6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_li3ft"]
+width = 100
+height = 100
+color_ramp = SubResource("Gradient_u2w5o")
+noise = SubResource("FastNoiseLite_tagx6")
+
+[node name="RoomGraphItem" type="GraphNode"]
+offset_left = 150.0
+offset_top = 166.0
+offset_right = 283.0
+offset_bottom = 366.0
+mouse_filter = 1
+position_offset = Vector2(150, 166)
+title = "Room"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 5
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = true
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = true
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+slot/3/left_enabled = true
+slot/3/left_type = 0
+slot/3/left_color = Color(1, 1, 1, 1)
+slot/3/left_icon = null
+slot/3/right_enabled = true
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
+slot/4/left_enabled = true
+slot/4/left_type = 0
+slot/4/left_color = Color(1, 1, 1, 1)
+slot/4/left_icon = null
+slot/4/right_enabled = true
+slot/4/right_type = 0
+slot/4/right_color = Color(1, 1, 1, 1)
+slot/4/right_icon = null
+slot/4/draw_stylebox = true
+slot/5/left_enabled = true
+slot/5/left_type = 0
+slot/5/left_color = Color(1, 1, 1, 1)
+slot/5/left_icon = null
+slot/5/right_enabled = true
+slot/5/right_type = 0
+slot/5/right_color = Color(1, 1, 1, 1)
+slot/5/right_icon = null
+slot/5/draw_stylebox = true
+
+[node name="RoomName" type="Label" parent="."]
+layout_mode = 2
+text = "Gas Station"
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("NoiseTexture2D_li3ft")
+
+[node name="NorthIn" type="Label" parent="."]
+layout_mode = 2
+text = "North
+"
+
+[node name="EastIn" type="Label" parent="."]
+layout_mode = 2
+text = "East"
+
+[node name="SouthIn" type="Label" parent="."]
+layout_mode = 2
+text = "South"
+
+[node name="WestIn" type="Label" parent="."]
+layout_mode = 2
+text = "West"
