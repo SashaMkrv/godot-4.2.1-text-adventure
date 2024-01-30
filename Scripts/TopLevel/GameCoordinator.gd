@@ -14,6 +14,9 @@ func executeCommand(action: PlayerAction) -> void:
     if action is LookAction:
         var looking := action as LookAction
         textUpdate("We will [LOOK] at all the various pleasure of [%s]." % looking.specifier)
+    if action is EatAction:
+        var eating := action as EatAction
+        textUpdate("You [EAT] the mighty snack that is the [%s]." % eating.specifier)
 
 
 func textUpdate(description: String) -> void:
