@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://byfsmvgqfe8nb"]
 
 [ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_yedsh"]
-[ext_resource type="Script" path="res://Scripts/TextHandlers/TokenizeInput.gd" id="2_im88t"]
-[ext_resource type="Script" path="res://Scripts/TopLevel/GameCoordinator.gd" id="3_db8a8"]
-[ext_resource type="Script" path="res://Scripts/TextHandlers/TransformText.gd" id="4_ox41l"]
+[ext_resource type="PackedScene" uid="uid://j54nldhfh0rg" path="res://Scenes/FunctionalNodes/game_coordinator.tscn" id="2_hkya0"]
+[ext_resource type="PackedScene" uid="uid://b0r3xqm8qh2nw" path="res://Scenes/FunctionalNodes/tokenize_input.tscn" id="3_d3h1t"]
+[ext_resource type="PackedScene" uid="uid://b8lpq5o0ugk0n" path="res://Scenes/FunctionalNodes/transform_text.tscn" id="4_1vkmo"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere")]
 layout_mode = 3
@@ -41,13 +41,8 @@ max_length = 20
 flat = true
 caret_blink = true
 
-[node name="InputTokenizer" type="Node" parent="."]
-script = ExtResource("2_im88t")
+[node name="GameCoordinator" parent="." instance=ExtResource("2_hkya0")]
 
-[node name="GameCoordinator" type="Node" parent="."]
-script = ExtResource("3_db8a8")
+[node name="TokenizeInput" parent="." instance=ExtResource("3_d3h1t")]
 
-[node name="TransformText" type="Node" parent="."]
-script = ExtResource("4_ox41l")
-
-[connection signal="text_submitted" from="PanelContainer/VBoxContainer/LineEdit" to="." method="handleActionEnter"]
+[node name="TransformText" parent="." instance=ExtResource("4_1vkmo")]
