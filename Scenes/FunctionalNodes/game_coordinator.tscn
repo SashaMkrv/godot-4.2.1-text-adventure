@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://j54nldhfh0rg"]
+
+[ext_resource type="Script" path="res://Scripts/TopLevel/GameCoordinator.gd" id="1_8su6k"]
+
+[node name="GameCoordinator" type="Node"]
+script = ExtResource("1_8su6k")

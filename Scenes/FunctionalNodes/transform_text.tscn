@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8lpq5o0ugk0n"]
+
+[ext_resource type="Script" path="res://Scripts/TextHandlers/TransformText.gd" id="1_0qxc7"]
+
+[node name="TransformText" type="Node"]
+script = ExtResource("1_0qxc7")

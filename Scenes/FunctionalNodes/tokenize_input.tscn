@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0r3xqm8qh2nw"]
+
+[ext_resource type="Script" path="res://Scripts/TextHandlers/TokenizeInput.gd" id="1_en5sq"]
+
+[node name="TokenizeInput" type="Node"]
+script = ExtResource("1_en5sq")
