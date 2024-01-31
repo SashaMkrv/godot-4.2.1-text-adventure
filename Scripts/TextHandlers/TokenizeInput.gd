@@ -2,7 +2,7 @@ class_name TokenizeInput
 extends Node
 
 var keywordRegexpr: RegEx
-const verbs := [&"GO", &"EAT", &"LOOK", &"USE", &"TALK", &"GRAB"]
+const verbs := [&"GO", &"EAT", &"LOOK", &"USE", &"TALK", &"GRAB", &"HELP"]
 
 func _ready() -> void:
 	const keywordsExploded := "TASTY TREATS|TREATS|YOUTH|NORTH|EAST|WEST|SOUTH|DOOR|WINDOW|CREDIT CARD|DIME|KEYS|GUM|AROUND"

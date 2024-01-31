@@ -33,5 +33,7 @@ func constructAction() -> PlayerAction:
             return TalkAction.new(specifier)
         &"GRAB":
             return GrabAction.new(specifier)
+        &"HELP":
+            return HelpAction.new(specifier)
         _:
             return NoneAction.new(&"BAD VERB")

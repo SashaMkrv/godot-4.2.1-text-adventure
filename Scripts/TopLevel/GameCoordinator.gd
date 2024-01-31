@@ -17,6 +17,10 @@ func executeCommand(action: PlayerAction) -> void:
     if action is EatAction:
         var eating := action as EatAction
         textUpdate("You [EAT] the mighty snack that is the [%s]." % eating.specifier)
+    if action is HelpAction:
+        textUpdate("Interact with the game by entering text commands.
+        
+        With the exception of a small set of shortcuts (e.g. [N] = [GO NORTH]), commands must begin with a valid verb and be followed by a valid target. Prepositions and articles will be ignored by the parser, but the first found match will be used as a target. Please do not \"[EAT] the youth's [GUM]\". You will try to [EAT YOUTH] instead. The parser does not have a big fancy brain :(")
 
 
 func textUpdate(description: String) -> void:
