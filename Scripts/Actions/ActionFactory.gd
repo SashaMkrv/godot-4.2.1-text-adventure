@@ -29,5 +29,7 @@ func constructAction() -> PlayerAction:
             return LookAction.new(&"AROUND" if specifier == null else specifier)
         &"USE":
             return UseAction.new(specifier)
+        &"TALK":
+            return TalkAction.new(specifier)
         _:
             return NoneAction.new(&"BAD VERB")
