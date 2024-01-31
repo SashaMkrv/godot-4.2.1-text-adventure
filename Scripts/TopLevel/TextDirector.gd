@@ -1,6 +1,6 @@
 extends Control
 
-@onready var tokenizer := $InputTokenizer as TokenizeInput
+@onready var tokenizer := $TokenizeInput as TokenizeInput
 @onready var transformer := $TransformText as TransformText
 
 @onready var game := $GameCoordinator as GameCoordinator
@@ -10,7 +10,9 @@ extends Control
 
 
 func _ready() -> void:
-	game.game_updated.connect(handleGameUpdateEvent)
+	var _ok := game.game_updated.connect(handleGameUpdateEvent)
+	if enterHere != null:
+		_ok = enterHere.text_submitted.connect(handleActionEnter)
 
 
 func handleSubmittedInput(text: String) -> void:
