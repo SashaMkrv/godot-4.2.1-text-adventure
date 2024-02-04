@@ -3,7 +3,6 @@ extends Node
 
 signal game_updated(description: String)
 
-
 func executeCommand(action: PlayerAction) -> void:
     if action is NoneAction:
         var problem := action as NoneAction
@@ -19,8 +18,8 @@ func executeCommand(action: PlayerAction) -> void:
         textUpdate("You [EAT] the mighty snack that is the [%s]." % eating.specifier)
     if action is HelpAction:
         textUpdate("Interact with the game by entering text commands.
-        
-        With the exception of a small set of shortcuts (e.g. [N] = [GO NORTH]), commands must begin with a valid verb and be followed by a valid target. Prepositions and articles will be ignored by the parser, but the first found match will be used as a target. Please do not \"[EAT] the youth's [GUM]\". You will try to [EAT YOUTH] instead. The parser does not have a big fancy brain :(")
+
+With the exception of a small set of shortcuts (e.g. [N] = [GO NORTH]), commands must begin with a valid verb and be followed by a valid target. Prepositions and articles will be ignored by the parser, but the first macth it finds will be used as the target. So, please, do not \"[EAT] the youth's [GUM]\". You will [EAT YOUTH] instead.")
 
 
 func textUpdate(description: String) -> void:

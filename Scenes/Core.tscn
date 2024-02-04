@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://beimnx40cpxtj"]
+[gd_scene load_steps=7 format=3 uid="uid://beimnx40cpxtj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ijdh2gc3qkl" path="res://Assets/gas-station.png" id="1_hj5o7"]
 [ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_l7lms"]
 [ext_resource type="PackedScene" uid="uid://b8lpq5o0ugk0n" path="res://Scenes/FunctionalNodes/transform_text.tscn" id="2_78lfu"]
 [ext_resource type="PackedScene" uid="uid://b0r3xqm8qh2nw" path="res://Scenes/FunctionalNodes/tokenize_input.tscn" id="3_p303p"]
 [ext_resource type="PackedScene" uid="uid://j54nldhfh0rg" path="res://Scenes/FunctionalNodes/game_coordinator.tscn" id="4_7un3v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djimx"]
+bg_color = Color(0.298039, 0.298039, 0.447059, 1)
 
 [node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere")]
 layout_mode = 3
@@ -28,13 +31,29 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_djimx")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gas Station: Inside"
+
+[node name="ScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2"]
+layout_mode = 2
+text = "10/15"
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
