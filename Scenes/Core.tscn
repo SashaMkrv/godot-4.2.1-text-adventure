@@ -51,7 +51,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Gas Station: Inside"
 
-[node name="ScoreLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2"]
+[node name="HeaderExtraLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2"]
 layout_mode = 2
 text = "10/15"
 
@@ -73,17 +73,6 @@ The [b]AUTOMATIC DOOR[/b] to the [b]SOUTH[/b] no longer works. You may exit thro
 layout_mode = 2
 bbcode_enabled = true
 text = "In your pockets you have [b]KEYS[/b], [b]GUM[/b], [b]CREDIT CARD[/b], and [b]DIME[/b]."
-fit_content = true
-scroll_active = false
-
-[node name="ActionsLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[color=green]>TALK[/color]
-[color=green]>LOOK[/color]
-[color=green]>EAT[/color]
-[color=green]>GRAB[/color]
-[color=green]>GO[/color]"
 fit_content = true
 scroll_active = false
 
