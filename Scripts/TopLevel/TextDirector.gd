@@ -7,6 +7,8 @@ extends Control
 
 @export var enterHere : LineEdit
 @export var descriptionHere: RichTextLabel
+@export var headerHere: Label
+@export var headerExtraHere: Label
 
 
 func _ready() -> void:
@@ -51,3 +53,8 @@ func handleGameUpdateEvent(view: GameStateView) -> void:
 		descriptionHere.text = transformer.transformText(view.description)
 	else:
 		descriptionHere.text = view.description
+
+	if view.header != null && headerHere != null:
+		headerHere.text = view.header
+	if view.headerExtra != null && headerExtraHere != null:
+		headerExtraHere.text = view.headerExtra

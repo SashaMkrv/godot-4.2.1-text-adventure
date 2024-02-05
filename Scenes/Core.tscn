@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://beimnx40cpxtj"]
+[gd_scene load_steps=10 format=3 uid="uid://beimnx40cpxtj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ijdh2gc3qkl" path="res://Assets/gas-station.png" id="1_hj5o7"]
 [ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_l7lms"]
 [ext_resource type="PackedScene" uid="uid://b8lpq5o0ugk0n" path="res://Scenes/FunctionalNodes/transform_text.tscn" id="2_78lfu"]
 [ext_resource type="PackedScene" uid="uid://b0r3xqm8qh2nw" path="res://Scenes/FunctionalNodes/tokenize_input.tscn" id="3_p303p"]
 [ext_resource type="PackedScene" uid="uid://j54nldhfh0rg" path="res://Scenes/FunctionalNodes/game_coordinator.tscn" id="4_7un3v"]
+[ext_resource type="PackedScene" uid="uid://fvjyjrtxtbw0" path="res://Scenes/FunctionalNodes/player_mover.tscn" id="5_3l4o4"]
+[ext_resource type="Script" path="res://Scripts/GameInfo/Room.gd" id="5_k2e4s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djimx"]
 bg_color = Color(0.298039, 0.298039, 0.447059, 1)
+
+[sub_resource type="Resource" id="Resource_bovb4"]
+script = ExtResource("5_k2e4s")
 
 [node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere")]
 layout_mode = 3
@@ -108,5 +113,8 @@ text = "Enter"
 [node name="TransformText" parent="." instance=ExtResource("2_78lfu")]
 
 [node name="GameCoordinator" parent="." instance=ExtResource("4_7un3v")]
+currentRoom = SubResource("Resource_bovb4")
+
+[node name="PlayerMover" parent="GameCoordinator" instance=ExtResource("5_3l4o4")]
 
 [node name="TokenizeInput" parent="." instance=ExtResource("3_p303p")]
