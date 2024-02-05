@@ -29,17 +29,17 @@ func shortcuts(text: String) -> PlayerAction:
 	#whatever, pretend i bothered changing things over to chars.
 	match text:
 		"N":
-			return GoAction.new(&"NORTH")
+			return makeActionFromVerbAndSpecifier(&"GO", &"NORTH")
 		"S":
-			return GoAction.new(&"SOUTH")
+			return makeActionFromVerbAndSpecifier(&"GO", &"SOUTH")
 		"E":
-			return GoAction.new(&"EAST")
+			return makeActionFromVerbAndSpecifier(&"GO", &"EAST")
 		"W":
-			return GoAction.new(&"WEST")
+			return makeActionFromVerbAndSpecifier(&"GO", &"WEST")
 		"L":
-			return LookAction.new(&"AROUND")
+			return makeActionFromVerbAndSpecifier(&"LOOK", &"AROUND")
 		"R":
-			return LookAction.new(&"AROUND")
+			return makeActionFromVerbAndSpecifier(&"LOOK", &"AROUND")
 		_:
 			return NoneAction.new(&"INVALID")
 
@@ -47,6 +47,7 @@ func parseVerbAndNoun(text: String) -> PlayerAction:
 	var splitText := text.split(" ", false, 1)
 	var firstWord: String = splitText[0]
 	var namedFirstWord := StringName(firstWord)
+	
 	if namedFirstWord not in verbs:
 		print_debug("I don't know how to %s" % namedFirstWord)
 		return NoneAction.new(&"BAD VERB")
