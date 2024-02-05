@@ -1,6 +1,15 @@
-[gd_resource type="Resource" script_class="Room" load_steps=2 format=3 uid="uid://t0d70ih8bufl"]
+[gd_resource type="Resource" script_class="Room" load_steps=3 format=3 uid="uid://t0d70ih8bufl"]
 
+[ext_resource type="Resource" uid="uid://mo0e5bwhyo5v" path="res://Resources/Rooms/gas_station_inside.tres" id="1_7yumm"]
 [ext_resource type="Script" path="res://Scripts/GameInfo/Room.gd" id="1_btcxv"]
 
 [resource]
 script = ExtResource("1_btcxv")
+uniqueKey = "gas_station_outside"
+name = "Gas Station: Outside"
+description = "The gas station smells overwhemingly of gas. Which is good. Otherwise there might not have been any gas with which to fuel your [CAR]. Bless this stink."
+exits = {
+"NORTH": ExtResource("1_7yumm")
+}
+items = Array[Resource]([])
+interactables = Array[Resource]([])
