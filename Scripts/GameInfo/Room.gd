@@ -1,12 +1,14 @@
 class_name Room
 extends Resource
 
-var uniqueKey: String
-var name: String
-var description: String
-var exits: Dictionary # TODO Make this not an untyped dictionary :(
-var items: Array[Resource]
-var interactables: Array[Resource]
+@export var uniqueKey: String
+@export var name: String
+@export var description: String
+@export var exits: Dictionary # TODO Make this not an untyped dictionary :(
+@export var items: Array[Resource]
+@export var interactables: Array[Resource]
+
+# You stand in the middle of a gas station store. There are many, slightly aged, [TASTY TREATS] to enjoy, and a dull-eyed [YOUTH] stood behind the cash register to pester.    The [AUTOMATIC DOOR] to the [SOUTH] no longer works. You may exit through the [BROKEN WINDOW] to the [EAST].
 
 # TODO pull this logic out and into something that does these checks based on passed room data
 
