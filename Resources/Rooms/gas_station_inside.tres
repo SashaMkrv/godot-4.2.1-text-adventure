@@ -1,15 +1,14 @@
-[gd_resource type="Resource" script_class="Room" load_steps=3 format=3 uid="uid://mo0e5bwhyo5v"]
+[gd_resource type="Resource" script_class="Room" load_steps=2 format=3 uid="uid://mo0e5bwhyo5v"]
 
-[ext_resource type="Resource" uid="uid://t0d70ih8bufl" path="res://Resources/Rooms/gas_station_outside.tres" id="1_5ckvn"]
 [ext_resource type="Script" path="res://Scripts/GameInfo/Room.gd" id="1_p84bx"]
 
 [resource]
 script = ExtResource("1_p84bx")
 uniqueKey = "gas_station_inside"
 name = "Gas Station: Inside"
-description = "You stand in the middle of a gas station store. There are many, slightly aged, [TASTY TREATS] to enjoy, and a dull-eyed [YOUTH] stood behind the cash register to pester.    The [AUTOMATIC DOOR] to the [SOUTH] no longer works. You may exit through the [BROKEN WINDOW] to the [EAST]."
-exits = {
-"EAST": ExtResource("1_5ckvn")
-}
+description = "You stand in the middle of a gas station store. There are many, slightly aged, [TASTY TREATS] to enjoy, and a dull-eyed [YOUTH] stood behind the cash register to pester.
+
+The [AUTOMATIC DOOR] to the [SOUTH] no longer works. You may exit through the [BROKEN WINDOW] to the [EAST]."
+exits = Array[Resource]([])
 items = Array[Resource]([])
 interactables = Array[Resource]([])

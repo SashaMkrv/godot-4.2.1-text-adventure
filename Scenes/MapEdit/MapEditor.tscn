@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bqaa6qvw30j88" path="res://Scenes/MapEdit/RoomGraphItem.tscn" id="1_32l2e"]
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,15 +25,35 @@ connection_lines_curvature = 1.0
 
 [node name="RoomGraphItem" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 133.0
+offset_bottom = 200.0
 
 [node name="RoomGraphItem2" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 133.0
+offset_bottom = 200.0
 
 [node name="RoomGraphItem3" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 133.0
+offset_bottom = 200.0
 
 [node name="RoomGraphItem4" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 133.0
+offset_bottom = 200.0
 
 [node name="RoomGraphItem5" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
 layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 133.0
+offset_bottom = 200.0

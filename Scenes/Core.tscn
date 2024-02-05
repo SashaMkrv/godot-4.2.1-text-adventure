@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://beimnx40cpxtj"]
+[gd_scene load_steps=15 format=3 uid="uid://beimnx40cpxtj"]
 
 [ext_resource type="Texture2D" uid="uid://c7ijdh2gc3qkl" path="res://Assets/gas-station.png" id="1_hj5o7"]
 [ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_l7lms"]
@@ -7,11 +7,30 @@
 [ext_resource type="PackedScene" uid="uid://j54nldhfh0rg" path="res://Scenes/FunctionalNodes/game_coordinator.tscn" id="4_7un3v"]
 [ext_resource type="PackedScene" uid="uid://fvjyjrtxtbw0" path="res://Scenes/FunctionalNodes/player_mover.tscn" id="5_3l4o4"]
 [ext_resource type="Resource" uid="uid://mo0e5bwhyo5v" path="res://Resources/Rooms/gas_station_inside.tres" id="5_lvabs"]
+[ext_resource type="Script" path="res://Scripts/GameInfo/RoomConnection.gd" id="6_subp1"]
+[ext_resource type="Resource" uid="uid://t0d70ih8bufl" path="res://Resources/Rooms/gas_station_outside.tres" id="7_xkurm"]
+[ext_resource type="Script" path="res://Scripts/GameInfo/RoomConnections.gd" id="8_tikqe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djimx"]
 bg_color = Color(0.298039, 0.298039, 0.447059, 1)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere")]
+[sub_resource type="Resource" id="Resource_xrgt1"]
+script = ExtResource("6_subp1")
+fromRoom = ExtResource("5_lvabs")
+direction = &"EAST"
+toRoom = ExtResource("7_xkurm")
+
+[sub_resource type="Resource" id="Resource_i1wms"]
+script = ExtResource("6_subp1")
+fromRoom = ExtResource("7_xkurm")
+direction = &"NORTH"
+toRoom = ExtResource("5_lvabs")
+
+[sub_resource type="Resource" id="Resource_n7ftw"]
+script = ExtResource("8_tikqe")
+connections = Array[ExtResource("6_subp1")]([SubResource("Resource_xrgt1"), SubResource("Resource_i1wms")])
+
+[node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere", "headerHere", "headerExtraHere")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +40,8 @@ grow_vertical = 2
 script = ExtResource("1_l7lms")
 enterHere = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/LineEdit")
 descriptionHere = NodePath("PanelContainer/MarginContainer/VBoxContainer/DescriptionLabel")
+headerHere = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2/HeaderLabel")
+headerExtraHere = NodePath("PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2/HeaderExtraLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -111,6 +132,7 @@ text = "Enter"
 
 [node name="GameCoordinator" parent="." instance=ExtResource("4_7un3v")]
 currentRoom = ExtResource("5_lvabs")
+gameMap = SubResource("Resource_n7ftw")
 
 [node name="PlayerMover" parent="GameCoordinator" instance=ExtResource("5_3l4o4")]
 
