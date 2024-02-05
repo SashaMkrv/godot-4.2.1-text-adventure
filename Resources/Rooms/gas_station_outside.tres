@@ -6,7 +6,11 @@
 script = ExtResource("1_btcxv")
 uniqueKey = "gas_station_outside"
 name = "Gas Station: Outside"
-description = "The gas station smells overwhemingly of gas. Which is good. Otherwise there might not have been any gas with which to fuel your [CAR]. Bless this stink."
+description = "The [GAS STATION] smells overwhemingly of gas. Which is good; Otherwise, there might not have been any gas with which to fuel your [CAR]. Bless this stink.
+
+Through the [PICTURE WINDOW] of the convenience store, you can see the [CASHIER] in all their bright red, uniformed glory.
+
+Though you had originally come here to fuel said [CAR], your [CAR] is nowhere to be found."
 exits = Array[Resource]([])
 items = Array[Resource]([])
 interactables = Array[Resource]([])

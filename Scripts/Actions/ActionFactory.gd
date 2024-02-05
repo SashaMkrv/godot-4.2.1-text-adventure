@@ -1,14 +1,14 @@
-class_name ActionFactory
+class_name ActionBuilder
 extends RefCounted
 
 var verb: StringName
 var specifier: StringName
 
-func setVerb(_verb: StringName) -> ActionFactory:
+func setVerb(_verb: StringName) -> ActionBuilder:
     verb = _verb
     return self
 
-func setSpecifier(_specifier: StringName) -> ActionFactory:
+func setSpecifier(_specifier: StringName) -> ActionBuilder:
     specifier = _specifier
     return self
 
@@ -27,6 +27,10 @@ func constructAction() -> PlayerAction:
             return EatAction.new(specifier)
         &"LOOK":
             return LookAction.new(&"AROUND" if specifier == null else specifier)
+        &"X":
+            return LookAction.new(specifier)
+        &"EXAMINE":
+            return LookAction.new(specifier)
         &"USE":
             return UseAction.new(specifier)
         &"TALK":

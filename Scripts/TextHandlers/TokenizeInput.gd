@@ -2,15 +2,19 @@ class_name TokenizeInput
 extends Node
 
 var keywordRegexpr: RegEx
-const verbs := [&"GO", &"EAT", &"LOOK", &"USE", &"TALK", &"GRAB", &"HELP"]
+const verbs := [&"GO", &"EAT", &"LOOK", &"USE", &"TALK", &"GRAB", &"HELP", &"X", &"EXAMINE"]
+const keywordsString := "NORTH/SOUTH/EAST/WEST/DOOR/WINDOW/CREDIT CARD/CARD/DIME/KEYS/GUM/AROUND/TREATS/TASTY TREATS/CHUCKLES/E&ES/PLUTO/MAPLE BUN/BUN/YOUTH/CAR"
 
 func _ready() -> void:
-	const keywordsExploded := "TASTY TREATS|TREATS|YOUTH|NORTH|EAST|WEST|SOUTH|DOOR|WINDOW|CREDIT CARD|DIME|KEYS|GUM|AROUND"
-	var keywordCheckRegexprString := "(?:(?:\\b(?:%s)\\b))" % keywordsExploded
+	var keywordsList := keywordsString.split("/")
+	keywordRegexpr = createKeywordRegEx(keywordsList)
 
-	print_debug(keywordCheckRegexprString)
-	keywordRegexpr = RegEx.new()
-	var _ok := keywordRegexpr.compile(keywordCheckRegexprString)
+func createKeywordRegEx(keywordsList: PackedStringArray) -> RegEx:
+	var keywordsExploded := "|".join(keywordsList)
+	var keywordCheckRegexprString := "(?:(?:\\b(?:%s)\\b))" % keywordsExploded
+	var regEx := RegEx.new()
+	var _ok := regEx.compile(keywordCheckRegexprString)
+	return regEx
 
 func tokenizeText(text: String) -> PlayerAction:
 	text = text.strip_edges().to_upper()
@@ -34,6 +38,8 @@ func shortcuts(text: String) -> PlayerAction:
 			return GoAction.new(&"WEST")
 		"L":
 			return LookAction.new(&"AROUND")
+		"R":
+			return LookAction.new(&"AROUND")
 		_:
 			return NoneAction.new(&"INVALID")
 
@@ -52,7 +58,7 @@ func parseVerbAndNoun(text: String) -> PlayerAction:
 
 
 func makeActionFromVerb(verb: StringName) -> PlayerAction:
-	return ActionFactory.new()\
+	return ActionBuilder.new()\
 	.setVerb(verb)\
 	.constructAction()
 
@@ -66,7 +72,7 @@ func makeActionFromVerbAndSpecifier(verb: StringName, unparsedText: String) -> P
 
 	var namedKeyword := StringName(foundKeyword)
 
-	return ActionFactory.new()\
+	return ActionBuilder.new()\
 	.setVerb(verb)\
 	.setSpecifier(namedKeyword)\
 	.constructAction()
