@@ -3,7 +3,7 @@ extends Node
 
 var keywordRegexpr: RegEx
 const verbs := [&"GO", &"EAT", &"LOOK", &"USE", &"TALK", &"GRAB", &"HELP", &"X", &"EXAMINE"]
-const keywordsString := "NORTH/SOUTH/EAST/WEST/DOOR/WINDOW/CREDIT CARD/CARD/DIME/KEYS/GUM/AROUND/TREATS/TASTY TREATS/CHUCKLES/E&ES/PLUTO/MAPLE BUN/BUN/YOUTH/CAR"
+const keywordsString := "NORTH/SOUTH/EAST/WEST/DOOR/WINDOW/CREDIT CARD/CARD/DIME/KEYS/GUM/AROUND/TREATS/TASTY TREATS/CHUCKLES/E&ES/PLUTO/MAPLE BUN/BUN/YOUTH/CAR/OUTSIDE"
 
 func _ready() -> void:
 	var keywordsList := keywordsString.split("/")
@@ -47,7 +47,7 @@ func parseVerbAndNoun(text: String) -> PlayerAction:
 	var splitText := text.split(" ", false, 1)
 	var firstWord: String = splitText[0]
 	var namedFirstWord := StringName(firstWord)
-	
+
 	if namedFirstWord not in verbs:
 		print_debug("I don't know how to %s" % namedFirstWord)
 		return NoneAction.new(&"BAD VERB")

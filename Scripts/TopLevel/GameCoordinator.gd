@@ -7,6 +7,13 @@ extends Node
 
 signal game_updated(description: String)
 
+func requestStart() -> void:
+    var viewModel := GameStateView.new()\
+    .setHeader(currentRoom.name)\
+    .setDescription(currentRoom.description)
+
+    stateUpdate(viewModel)
+
 # TODO should this always return a state update? does the update have any reason to be a signal???
 func executeCommand(action: PlayerAction) -> void:
     if action is NoneAction:

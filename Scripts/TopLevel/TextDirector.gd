@@ -15,6 +15,9 @@ func _ready() -> void:
 	var _ok := game.game_updated.connect(handleGameUpdateEvent)
 	if enterHere != null:
 		_ok = enterHere.text_submitted.connect(handleActionEnter)
+	
+	# TODO don't do this.
+	game.requestStart()
 
 
 func handleSubmittedInput(text: String) -> void:
