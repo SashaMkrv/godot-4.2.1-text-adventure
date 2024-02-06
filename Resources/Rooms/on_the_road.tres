@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Room" load_steps=2 format=3 uid="uid://t8ryyhih5yln"]
+
+[ext_resource type="Script" path="res://Scripts/GameInfo/Room.gd" id="1_lfn5e"]
+
+[resource]
+script = ExtResource("1_lfn5e")
+uniqueKey = "on_the_road"
+name = "Highway"
+description = "The road is treating you right today, but your beloved [CAR] needs to eat. What can you do.
+
+There's a [GAS STATION] coming up soon, on an exit going [NORTH]."
+exits = Array[Resource]([])
+items = Array[Resource]([])
+interactables = Array[Resource]([])
