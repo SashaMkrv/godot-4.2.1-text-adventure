@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq733l4a7sq2x"]
+[gd_scene load_steps=4 format=3 uid="uid://dq733l4a7sq2x"]
 
-[ext_resource type="PackedScene" uid="uid://bqaa6qvw30j88" path="res://Scenes/MapEdit/RoomGraphItem.tscn" id="1_32l2e"]
+[ext_resource type="Script" path="res://Scenes/MapEdit/DrawMap.gd" id="2_vm2y5"]
+[ext_resource type="Resource" uid="uid://mr8g2ar6gf5b" path="res://Resources/Maps/gas_map.tres" id="2_wl24m"]
+[ext_resource type="PackedScene" uid="uid://eusdbj1dx5qw" path="res://Scenes/MapEdit/RoomNode.tscn" id="3_6o1dm"]
 
 [node name="Control2" type="Control"]
 layout_mode = 3
@@ -18,42 +20,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GraphEdit" type="GraphEdit" parent="PanelContainer"]
+[node name="GraphEdit2" type="GraphEdit" parent="PanelContainer"]
 layout_mode = 2
 right_disconnects = true
 connection_lines_curvature = 1.0
-
-[node name="RoomGraphItem" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 133.0
-offset_bottom = 200.0
-
-[node name="RoomGraphItem2" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 133.0
-offset_bottom = 200.0
-
-[node name="RoomGraphItem3" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 133.0
-offset_bottom = 200.0
-
-[node name="RoomGraphItem4" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 133.0
-offset_bottom = 200.0
-
-[node name="RoomGraphItem5" parent="PanelContainer/GraphEdit" instance=ExtResource("1_32l2e")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 133.0
-offset_bottom = 200.0
+script = ExtResource("2_vm2y5")
+connections = ExtResource("2_wl24m")
+roomNodeScene = ExtResource("3_6o1dm")

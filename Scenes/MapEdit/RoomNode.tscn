@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://eusdbj1dx5qw"]
+
+[ext_resource type="Script" path="res://Scenes/MapEdit/RoomNode.gd" id="1_11r6d"]
+
+[node name="RoomNode" type="GraphNode" groups=["roomnode"]]
+offset_left = 428.0
+offset_top = 155.0
+offset_right = 532.0
+offset_bottom = 233.0
+mouse_filter = 1
+position_offset = Vector2(360, 155)
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_11r6d")
+
+[node name="RoomName" type="Label" parent="."]
+layout_mode = 2
