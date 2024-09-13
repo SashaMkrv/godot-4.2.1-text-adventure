@@ -11,4 +11,3 @@ extends Resource
 @export var replaceSelfWith : Array[GameObject]
 
 @export var resultDescription : String
-

@@ -15,8 +15,8 @@ extends Resource
 
 # TODO pull this logic out and into something that does these checks based on passed room data
 func getNextRoomFrom(room: Room, direction: StringName, _conditions: GameConditions) -> Room:
-    for connection in connections:
-        if connection.fromRoom == room and connection.direction == direction:
-            return connection.toRoom
-    
-    return room
+	for connection in connections:
+		if connection.fromRoom == room and connection.direction == direction:
+			return connection.toRoom
+	
+	return room

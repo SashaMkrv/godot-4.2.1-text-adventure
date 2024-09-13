@@ -11,9 +11,9 @@ extends Resource
 @export var interactables: Array[Resource]
 
 func itemIsPresent(_itemName: StringName) -> bool:
-    #TODO update to actually check the presence of an item
-    return true
+	#TODO update to actually check the presence of an item
+	return true
 
 func interactableIsPresent(_objectName: StringName) -> bool:
-    #TODO actually check for things
-    return true
+	#TODO actually check for things
+	return true

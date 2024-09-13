@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://byfsmvgqfe8nb"]
+[gd_scene load_steps=8 format=3 uid="uid://byfsmvgqfe8nb"]
 
 [ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_yedsh"]
 [ext_resource type="PackedScene" uid="uid://j54nldhfh0rg" path="res://Scenes/FunctionalNodes/game_coordinator.tscn" id="2_hkya0"]
 [ext_resource type="PackedScene" uid="uid://b0r3xqm8qh2nw" path="res://Scenes/FunctionalNodes/tokenize_input.tscn" id="3_d3h1t"]
+[ext_resource type="Resource" uid="uid://t8ryyhih5yln" path="res://Resources/Rooms/on_the_road.tres" id="3_o63su"]
 [ext_resource type="PackedScene" uid="uid://b8lpq5o0ugk0n" path="res://Scenes/FunctionalNodes/transform_text.tscn" id="4_1vkmo"]
+[ext_resource type="Resource" uid="uid://mr8g2ar6gf5b" path="res://Resources/Maps/gas_map.tres" id="4_sng2g"]
+[ext_resource type="PackedScene" uid="uid://fvjyjrtxtbw0" path="res://Scenes/FunctionalNodes/player_mover.tscn" id="5_21w16"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("enterHere", "descriptionHere")]
 layout_mode = 3
@@ -42,6 +45,10 @@ flat = true
 caret_blink = true
 
 [node name="GameCoordinator" parent="." instance=ExtResource("2_hkya0")]
+currentRoom = ExtResource("3_o63su")
+gameMap = ExtResource("4_sng2g")
+
+[node name="PlayerMover" parent="GameCoordinator" instance=ExtResource("5_21w16")]
 
 [node name="TokenizeInput" parent="." instance=ExtResource("3_d3h1t")]
 
