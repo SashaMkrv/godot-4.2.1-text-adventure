@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=3 uid="uid://beimnx40cpxtj"]
+[gd_scene load_steps=9 format=3 uid="uid://beimnx40cpxtj"]
 
-[ext_resource type="Texture2D" uid="uid://c7ijdh2gc3qkl" path="res://Assets/gas-station.png" id="1_hj5o7"]
 [ext_resource type="Script" path="res://Scripts/TopLevel/TextDirector.gd" id="1_l7lms"]
 [ext_resource type="PackedScene" uid="uid://b8lpq5o0ugk0n" path="res://Scenes/FunctionalNodes/transform_text.tscn" id="2_78lfu"]
 [ext_resource type="PackedScene" uid="uid://b0r3xqm8qh2nw" path="res://Scenes/FunctionalNodes/tokenize_input.tscn" id="3_p303p"]
@@ -59,12 +58,6 @@ text = "Gas Station: Inside"
 [node name="HeaderExtraLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer2"]
 layout_mode = 2
 text = "10/15"
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("1_hj5o7")
-stretch_mode = 6
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
