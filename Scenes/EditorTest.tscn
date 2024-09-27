@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://h1imuem80nhm"]
+
+[ext_resource type="Script" path="res://Scripts/CodeCompletionTest.gd" id="1_bfyvy"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_xi3fv"]
+number_color = Color(0.705882, 0.564706, 0.168627, 1)
+symbol_color = Color(0.431373, 0.541176, 0, 1)
+function_color = Color(0.0842613, 0.312115, 0.956963, 1)
+member_variable_color = Color(0.227451, 0.588235, 0.572549, 1)
+keyword_colors = {
+"define": Color(0.831373, 0.588235, 0.164706, 1),
+"exit": Color(0.709804, 0.364706, 0.333333, 1),
+"has": Color(0.533333, 0.372549, 0.909804, 1),
+"item": Color(0.709804, 0.364706, 0.333333, 1)
+}
+member_keyword_colors = {
+"car_inside": Color(0.380392, 0.807843, 0.784314, 1),
+"east": Color(0.380392, 0.596078, 0.807843, 1),
+"gas_station_inside": Color(0.380392, 0.807843, 0.784314, 1),
+"gas_station_outside": Color(0.380392, 0.807843, 0.784314, 1),
+"north": Color(0.380392, 0.596078, 0.807843, 1),
+"on_the_road": Color(0.380392, 0.807843, 0.784314, 1),
+"south": Color(0.380392, 0.596078, 0.807843, 1),
+"west": Color(0.380392, 0.596078, 0.807843, 1)
+}
+
+[node name="EditorTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="CodeEdit" type="CodeEdit" parent="TabContainer"]
+layout_mode = 2
+wrap_mode = 1
+syntax_highlighter = SubResource("CodeHighlighter_xi3fv")
+highlight_all_occurrences = true
+highlight_current_line = true
+line_folding = true
+line_length_guidelines = Array[int]([60])
+gutters_draw_line_numbers = true
+delimiter_comments = Array[String](["- -"])
+code_completion_enabled = true
+code_completion_prefixes = Array[String]([".", "("])
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+metadata/_tab_index = 0
+
+[node name="CodeCompletion" type="Node" parent="."]
+script = ExtResource("1_bfyvy")
+
+[connection signal="code_completion_requested" from="TabContainer/CodeEdit" to="CodeCompletion" method="_on_code_edit_code_completion_requested"]
