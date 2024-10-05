@@ -1,0 +1,272 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvhejcy7y42k7"]
+
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/MapEditor.gd" id="1_1ptpf"]
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/MapContainer.gd" id="1_2j7kv"]
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/ItemEditor.gd" id="3_e6a6i"]
+
+[sub_resource type="SyntaxHighlighter" id="SyntaxHighlighter_ikksk"]
+
+[node name="MapEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ptpf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VSplitContainer/PanelContainer"]
+layout_mode = 2
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VSplitContainer/PanelContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_2j7kv")
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VSplitContainer/PanelContainer/ScrollContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 30
+
+[node name="ItemEditor" type="TabContainer" parent="MarginContainer/VSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+script = ExtResource("3_e6a6i")
+
+[node name="Room" type="Panel" parent="MarginContainer/VSplitContainer/ItemEditor"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer4/HBoxContainer"]
+layout_mode = 2
+text = "Cell Color"
+
+[node name="MapCellColorInput" type="ColorPickerButton" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer4/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cell Color"
+color = Color(0.2, 0.2, 0.2, 1)
+edit_alpha = false
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Make Starting Room"
+
+[node name="DescriptionInput" type="TextEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+wrap_mode = 1
+syntax_highlighter = SubResource("SyntaxHighlighter_ikksk")
+highlight_all_occurrences = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Reference String"
+
+[node name="ReferenceStringInput" type="LineEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Display Name"
+
+[node name="DisplayNameInput" type="LineEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Connections" type="PanelContainer" parent="MarginContainer/VSplitContainer/ItemEditor"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "base_instinct"
+popup/item_1/text = "business_casual"
+popup/item_1/id = 1
+popup/item_2/text = "gas_station_outside"
+popup/item_2/id = 2
+popup/item_3/text = "charlotte_1"
+popup/item_3/id = 3
+popup/item_4/text = "charlotte_2"
+popup/item_4/id = 4
+popup/item_5/text = "jail_cell"
+popup/item_5/id = 5
+popup/item_6/text = "jail_cell_outside"
+popup/item_6/id = 6
+
+[node name="OptionButton2" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+selected = 1
+item_count = 10
+popup/item_0/text = "NORTH"
+popup/item_1/text = "EAST"
+popup/item_1/id = 1
+popup/item_2/text = "SOUTH"
+popup/item_2/id = 3
+popup/item_3/text = "WEST"
+popup/item_3/id = 2
+popup/item_4/text = "UP"
+popup/item_4/id = 4
+popup/item_5/text = "DOWN"
+popup/item_5/id = 5
+popup/item_6/text = "NORTHEAST"
+popup/item_6/id = 6
+popup/item_7/text = "NORTHWEST"
+popup/item_7/id = 7
+popup/item_8/text = "SOUTHEAST"
+popup/item_8/id = 8
+popup/item_9/text = "SOUTHWEST"
+popup/item_9/id = 9
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "business_casual"
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "DEL"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+selected = 0
+item_count = 7
+popup/item_0/text = "base_instinct"
+popup/item_1/text = "business_casual"
+popup/item_1/id = 1
+popup/item_2/text = "gas_station_outside"
+popup/item_2/id = 2
+popup/item_3/text = "charlotte_1"
+popup/item_3/id = 3
+popup/item_4/text = "charlotte_2"
+popup/item_4/id = 4
+popup/item_5/text = "jail_cell"
+popup/item_5/id = 5
+popup/item_6/text = "jail_cell_outside"
+popup/item_6/id = 6
+
+[node name="OptionButton2" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+selected = 1
+item_count = 10
+popup/item_0/text = "NORTH"
+popup/item_1/text = "EAST"
+popup/item_1/id = 1
+popup/item_2/text = "SOUTH"
+popup/item_2/id = 3
+popup/item_3/text = "WEST"
+popup/item_3/id = 2
+popup/item_4/text = "UP"
+popup/item_4/id = 4
+popup/item_5/text = "DOWN"
+popup/item_5/id = 5
+popup/item_6/text = "NORTHEAST"
+popup/item_6/id = 6
+popup/item_7/text = "NORTHWEST"
+popup/item_7/id = 7
+popup/item_8/text = "SOUTHEAST"
+popup/item_8/id = 8
+popup/item_9/text = "SOUTHWEST"
+popup/item_9/id = 9
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "business_casual"
+
+[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "DEL"
+
+[node name="Timer" type="Timer" parent="MarginContainer/VSplitContainer/ItemEditor"]
+wait_time = 5.0
+
+[connection signal="item_selected" from="MarginContainer/VSplitContainer/PanelContainer/ScrollContainer/MarginContainer/CenterContainer" to="." method="_on_center_container_item_selected"]
+[connection signal="color_changed" from="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer4/HBoxContainer/MapCellColorInput" to="MarginContainer/VSplitContainer/ItemEditor" method="_on_map_cell_color_input_color_changed"]
+[connection signal="text_changed" from="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/DescriptionInput" to="MarginContainer/VSplitContainer/ItemEditor" method="_on_description_input_text_changed"]
+[connection signal="text_changed" from="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer2/ReferenceStringInput" to="MarginContainer/VSplitContainer/ItemEditor" method="_on_reference_string_input_text_changed"]
+[connection signal="text_changed" from="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer3/DisplayNameInput" to="MarginContainer/VSplitContainer/ItemEditor" method="_on_display_name_input_text_changed"]
+[connection signal="timeout" from="MarginContainer/VSplitContainer/ItemEditor/Timer" to="MarginContainer/VSplitContainer/ItemEditor" method="_on_timer_timeout"]
