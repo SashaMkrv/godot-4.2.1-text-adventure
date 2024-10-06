@@ -40,6 +40,8 @@ follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/PanelContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -109,6 +111,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+placeholder_text = "Room Description"
 wrap_mode = 1
 syntax_highlighter = SubResource("SyntaxHighlighter_ikksk")
 highlight_all_occurrences = true
@@ -124,6 +127,7 @@ text = "Reference String"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "example_reference_string"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -136,6 +140,7 @@ text = "Display Name"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "Example Display Name"
 
 [node name="Connections" type="PanelContainer" parent="MarginContainer/VSplitContainer/ItemEditor"]
 visible = false
@@ -143,123 +148,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 metadata/_tab_index = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections"]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer"]
+[node name="CodeEdit" type="CodeEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/MarginContainer"]
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-selected = 0
-item_count = 7
-popup/item_0/text = "base_instinct"
-popup/item_1/text = "business_casual"
-popup/item_1/id = 1
-popup/item_2/text = "gas_station_outside"
-popup/item_2/id = 2
-popup/item_3/text = "charlotte_1"
-popup/item_3/id = 3
-popup/item_4/text = "charlotte_2"
-popup/item_4/id = 4
-popup/item_5/text = "jail_cell"
-popup/item_5/id = 5
-popup/item_6/text = "jail_cell_outside"
-popup/item_6/id = 6
-
-[node name="OptionButton2" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-selected = 1
-item_count = 10
-popup/item_0/text = "NORTH"
-popup/item_1/text = "EAST"
-popup/item_1/id = 1
-popup/item_2/text = "SOUTH"
-popup/item_2/id = 3
-popup/item_3/text = "WEST"
-popup/item_3/id = 2
-popup/item_4/text = "UP"
-popup/item_4/id = 4
-popup/item_5/text = "DOWN"
-popup/item_5/id = 5
-popup/item_6/text = "NORTHEAST"
-popup/item_6/id = 6
-popup/item_7/text = "NORTHWEST"
-popup/item_7/id = 7
-popup/item_8/text = "SOUTHEAST"
-popup/item_8/id = 8
-popup/item_9/text = "SOUTHWEST"
-popup/item_9/id = 9
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "business_casual"
-
-[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "DEL"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="OptionButton" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-selected = 0
-item_count = 7
-popup/item_0/text = "base_instinct"
-popup/item_1/text = "business_casual"
-popup/item_1/id = 1
-popup/item_2/text = "gas_station_outside"
-popup/item_2/id = 2
-popup/item_3/text = "charlotte_1"
-popup/item_3/id = 3
-popup/item_4/text = "charlotte_2"
-popup/item_4/id = 4
-popup/item_5/text = "jail_cell"
-popup/item_5/id = 5
-popup/item_6/text = "jail_cell_outside"
-popup/item_6/id = 6
-
-[node name="OptionButton2" type="OptionButton" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-selected = 1
-item_count = 10
-popup/item_0/text = "NORTH"
-popup/item_1/text = "EAST"
-popup/item_1/id = 1
-popup/item_2/text = "SOUTH"
-popup/item_2/id = 3
-popup/item_3/text = "WEST"
-popup/item_3/id = 2
-popup/item_4/text = "UP"
-popup/item_4/id = 4
-popup/item_5/text = "DOWN"
-popup/item_5/id = 5
-popup/item_6/text = "NORTHEAST"
-popup/item_6/id = 6
-popup/item_7/text = "NORTHWEST"
-popup/item_7/id = 7
-popup/item_8/text = "SOUTHEAST"
-popup/item_8/id = 8
-popup/item_9/text = "SOUTHWEST"
-popup/item_9/id = 9
-
-[node name="LineEdit" type="LineEdit" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-text = "business_casual"
-
-[node name="Button" type="Button" parent="MarginContainer/VSplitContainer/ItemEditor/Connections/HBoxContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "DEL"
+placeholder_text = "EAST: example_room_reference_string
+SOUTH: example_room_reference_string
+CHARLOTTE: example_string_for_arbitrary_direction"
 
 [node name="Timer" type="Timer" parent="MarginContainer/VSplitContainer/ItemEditor"]
 wait_time = 5.0
