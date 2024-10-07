@@ -23,6 +23,9 @@ func changedItem() -> void:
 		updateForItem()
 
 func updateForItem() -> void:
+	if currentItem == null:
+		resetUiForEmpty()
+		return
 	updateTitle()
 	setGameTextToItem()
 
@@ -41,15 +44,13 @@ func _on_command_input_text_submitted(new_text: String) -> void:
 	handlePlayerCommandSubmission(new_text)
 
 func resetUiForEmpty() -> void:
-	## TODO replace with appropriate header resets
 	gameText.clear()
+	titleLabel.remove_theme_color_override(&"font_color")
+	titleBackground.remove_theme_stylebox_override(&"panel")
 
 func updateTitle() -> void:
 	colorTitle()
 	titleLabel.text = currentItem.displayName
-
-
-var titleStyleBox:= StyleBoxFlat.new()
 
 func colorTitle() -> void:
 	var color := currentItem.flavorColor
@@ -58,7 +59,7 @@ func colorTitle() -> void:
 	if luminence > 0.7:
 		lightText = color
 	else:
-		var alphadColor = color
+		var alphadColor := color
 		alphadColor.a = 0.2
 		lightText = lightText.blend(alphadColor)
 	
@@ -66,14 +67,12 @@ func colorTitle() -> void:
 	if luminence < 0.2:
 		darkBackground = color
 	else:
-		var alphadColor = color
+		var alphadColor := color
 		alphadColor.a = 0.5
 		darkBackground = darkBackground.blend(alphadColor)
 	
-	#titleBackground.self_modulate = currentItem.flavorColor
-	# TODO remove and replace instead of stacking
-	# ... do they stack?
 	titleLabel.add_theme_color_override(&"font_color", lightText)
+	# TODO hold onto the stylebox and change its bg color.
 	var styleBox := StyleBoxFlat.new()
 	styleBox.bg_color = darkBackground
 	titleBackground.add_theme_stylebox_override(&"panel", styleBox)
@@ -84,7 +83,7 @@ func setGameTextToItem() -> void:
 
 
 func _ready() -> void:
-	var item = Item.EmptyItem()
+	var item := Item.EmptyItem()
 	item.flavorColor = Color.BLACK
 	item.description = "example description! Things are neat."
 	item.displayName = "Room Display Name"
