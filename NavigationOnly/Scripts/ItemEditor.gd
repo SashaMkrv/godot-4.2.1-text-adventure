@@ -6,7 +6,7 @@ var item: Item:
 	set(value):
 		if item == value:
 			return
-		descriptionSave()
+		saveBigFields()
 		item = value
 		newItemWasSet()
 
@@ -18,12 +18,18 @@ var descriptionInput: TextEdit = %DescriptionInput
 var uniqueNameInput: LineEdit = %ReferenceStringInput
 @onready
 var displayNameInput: LineEdit = %DisplayNameInput
+@onready
+var connectionsInput: TextEdit = %ConnectionsInput
 
 @onready
 var largeSaveTimer: Timer = $Timer
 
 
+# move out to an array of things waiting to save?
 var _descriptionWaitingForSave: bool = false
+var _connectionsWaitingForSave: bool = false
+
+var connectionTransformer:= ScriptParser.ColonSeparatedConnectionTransformer()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,6 +50,7 @@ func updateFields() -> void:
 		descriptionInput.text = item.description
 		uniqueNameInput.text = item.uniqueName
 		displayNameInput.text = item.displayName
+		connectionsInput.text = item.connectionsScript
 
 
 func descriptionHasChanged() -> void:
@@ -63,9 +70,28 @@ func getDescriptionText() -> String:
 	return descriptionInput.text
 
 
+func connectionsHasChanged() -> void:
+	_connectionsWaitingForSave = true
+	if largeSaveTimer.is_stopped():
+		largeSaveTimer.start()
+
+func forceConnectionsSave() -> void:
+	updateConnections(getConnectionsText())
+
+func connectionsSave() -> void:
+	if _connectionsWaitingForSave:
+		updateConnections(getConnectionsText())
+		_connectionsWaitingForSave = false
+
+func getConnectionsText() -> String:
+	return connectionsInput.text
+
 
 func updateDescription(newValue: String) -> void:
 	item.description = newValue
+
+func updateConnections(newValue: String) -> void:
+	item.connectionsScript = newValue
 
 func updateUniqueName(newValue: String) -> void:
 	# worth it to check if there's a duplicate and stop the change?
@@ -76,6 +102,11 @@ func updateDisplayName(newValue: String) -> void:
 
 func updateMapCellColor(newValue: Color) -> void:
 	item.flavorColor = newValue
+
+
+func saveBigFields() -> void:
+	descriptionSave()
+	connectionsSave()
 
 
 func _on_map_cell_color_input_color_changed(color: Color) -> void:
@@ -95,5 +126,9 @@ func _on_display_name_input_text_changed(new_text: String) -> void:
 	updateDisplayName(new_text)
 
 
+func _on_connections_input_text_changed() -> void:
+	connectionsHasChanged()
+
+
 func _on_timer_timeout() -> void:
-	descriptionSave()
+	saveBigFields()

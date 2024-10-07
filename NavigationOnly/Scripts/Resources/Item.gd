@@ -22,6 +22,13 @@ var flavorColor: Color:
 			return
 		flavorColor = value
 		color_changed.emit(flavorColor)
+## OH NO. I still have to keep the original script text...
+## HACK TODO HELP remove the dictionary from the editor items
+## Only have this in the actual game items
+## like, build time transformation
+## otherwise just keep the script.
+@export_multiline
+var connectionsScript: String
 
 static func EmptyItem() -> Item:
 	return Item.new()
