@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmrtadmcd1swc"]
+[gd_scene load_steps=8 format=3 uid="uid://dmrtadmcd1swc"]
 
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapPlayer.gd" id="1_gc3ri"]
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/Resources/GameState.gd" id="2_a41rq"]
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/Resources/GameItem.gd" id="3_6cysh"]
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/Resources/GameData.gd" id="3_gvk3u"]
+
+[sub_resource type="Resource" id="Resource_gpgft"]
+script = ExtResource("2_a41rq")
+currentRoom = "shimmer_sparkle"
+
+[sub_resource type="Resource" id="Resource_67j3b"]
+script = ExtResource("3_6cysh")
+uniqueName = "shimmer_sparkle"
+displayName = "Shimmer Sparkle"
+description = "Totally normal room. Normal place to be. It's blue, it shimmers, it sparkles. What's the problem?"
+flavorColor = Color(0.0755657, 0.302803, 0.953585, 1)
+connections = {
+"NORTH": "shimmer_sparkle"
+}
+
+[sub_resource type="Resource" id="Resource_uqil6"]
+script = ExtResource("3_gvk3u")
+items = {
+"shimmer_sparkle": SubResource("Resource_67j3b")
+}
+startRoom = "shimmer_sparkle"
 
 [node name="MapPlayer" type="Control"]
 layout_mode = 3
@@ -10,6 +34,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gc3ri")
+gameState = SubResource("Resource_gpgft")
+gameData = SubResource("Resource_uqil6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
