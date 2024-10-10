@@ -35,10 +35,10 @@ static func _convertItemsToGameItems(items: Dictionary) -> Dictionary:
 	for key:Variant in items.keys():
 		testItem = items[key]
 		if testItem is Item:
-			# have I forgotten an important bit of why thi is an unsafe cast
-			# or is this just a funky warning?
-			@warning_ignore("unsafe_cast")
-			item = testItem as Item
+			# an implicit cast is the polite way to handle this
+			# as opposed to item = testItem as Item
+			# which will make godot sad and throw up an error
+			item = testItem
 		else:
 			printerr("What is this in the game items? " + str(testItem))
 			continue
