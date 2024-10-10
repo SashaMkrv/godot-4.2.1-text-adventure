@@ -24,7 +24,7 @@ static func DefaultParser() -> ShortcutParser:
 	return ShortcutParser.new(_defaultShortcuts.duplicate())
 
 func parse(originalText: String) -> String:
-	var text = originalText.strip_edges().to_upper()
+	var text := originalText.strip_edges().to_upper()
 	if _shortcuts.keys().has(text):
 		return _shortcuts[text]
 	return originalText

@@ -14,13 +14,15 @@ var _wordSplitRegex: RegEx
 
 func _init() -> void:
 	_wordSplitRegex = RegEx.new()
-	_wordSplitRegex.compile("\\S+")
+	var error := _wordSplitRegex.compile("\\S+")
+	if error != Error.OK:
+		printerr("Regex compilation has gone wrong. Things will not be so good for command handling.")
 
 func _getString(match: RegExMatch) -> String:
 	return match.get_string()
 
 func parse(rawCommand: String, context: GameItem) -> Array[Instruction]:
-	var command = rawCommand.strip_edges().to_upper()
+	var command := rawCommand.strip_edges().to_upper()
 	var components := _wordSplitRegex.search_all(command).map(_getString)
 	# not even handling looking around refresh right now (because I don't know how! at all! pooched)
 	
@@ -40,7 +42,7 @@ func parse(rawCommand: String, context: GameItem) -> Array[Instruction]:
 		_:
 			return [ErrorInstruction.new("I don't know how to " + verb)]
 			
-	return []
+	#return []
 
 
 func _destinationForDirection(direction: String, context: GameItem) -> String:

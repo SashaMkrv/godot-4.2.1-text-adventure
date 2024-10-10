@@ -128,6 +128,6 @@ func _ready() -> void:
 		gameState = GameState.new()
 		gameState.currentRoom = gameData.startRoom
 	
-	gameState.current_room_changed.connect(roomChanged)
+	var _err := gameState.current_room_changed.connect(roomChanged)
 	currentItem = gameData.items[gameState.currentRoom]
 	updateForItem()

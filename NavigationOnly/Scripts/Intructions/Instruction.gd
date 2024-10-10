@@ -21,6 +21,6 @@ class_name Instruction
 # or just sceneryDescription or examine description???? mmmmMMMMMM
 
 ## Please Implement In Children!!!
-func executeChange(gameState: GameState) -> void:
+func executeChange(_gameState: GameState) -> void:
 	# I need a game state resource.
 	pass

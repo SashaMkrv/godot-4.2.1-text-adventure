@@ -14,18 +14,30 @@ var connections: Dictionary
 
 
 static func CreateFromEditingItem(item: Item) -> GameItem:
-	var connectionParser = ScriptParser.ColonSeparatedConnectionTransformer()
+	var connectionParser := ScriptParser.ColonSeparatedConnectionTransformer()
+	var parserResult: Variant = connectionParser.transform(item.connectionsScript)
+	var parsedConnections := {}
+	if parserResult is Dictionary:
+		parsedConnections = parserResult
+	else:
+		printerr("Unexpected connection parse result")
 	return GameItem.new(
 		item.uniqueName,
 		item.displayName,
 		item.description,
 		item.flavorColor,
-		connectionParser.stringTransform.call(item.connectionsScript)
+		parsedConnections
 	)
 
-func _init(uniqueName: String = "", displayName: String = "", description: String = "", flavorColor: Color = Color.BLACK, connections: Dictionary = {}):
-	self.uniqueName = uniqueName
-	self.displayName = displayName
-	self.description = description
-	self.flavorColor = flavorColor
-	self.connections = connections
+func _init(
+	_uniqueName: String = "",
+	_displayName: String = "",
+	_description: String = "",
+	_flavorColor: Color = Color.BLACK,
+	_connections: Dictionary = {}
+) -> void:
+	uniqueName = _uniqueName
+	displayName = _displayName
+	description = _description
+	flavorColor = _flavorColor
+	connections = _connections
