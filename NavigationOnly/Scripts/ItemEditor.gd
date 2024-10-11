@@ -20,6 +20,8 @@ var uniqueNameInput: LineEdit = %ReferenceStringInput
 var displayNameInput: LineEdit = %DisplayNameInput
 @onready
 var connectionsInput: TextEdit = %ConnectionsInput
+@onready
+var sceneryInput: TextEdit = %SceneryInput
 
 @onready
 var largeSaveTimer: Timer = $Timer
@@ -28,6 +30,7 @@ var largeSaveTimer: Timer = $Timer
 # move out to an array of things waiting to save?
 var _descriptionWaitingForSave: bool = false
 var _connectionsWaitingForSave: bool = false
+var _sceneryWaitingForSave: bool = false
 
 var connectionTransformer:= ScriptParser.ColonSeparatedConnectionTransformer()
 
@@ -51,7 +54,10 @@ func updateFields() -> void:
 		uniqueNameInput.text = item.uniqueName
 		displayNameInput.text = item.displayName
 		connectionsInput.text = item.connectionsScript
+		sceneryInput.text = item.sceneryScript
 
+
+# BIG TEXT/SCRIPT UPDATE FUNCTIONS
 
 func descriptionHasChanged() -> void:
 	_descriptionWaitingForSave = true
@@ -87,11 +93,36 @@ func getConnectionsText() -> String:
 	return connectionsInput.text
 
 
+func sceneryHasChanged() -> void:
+	_sceneryWaitingForSave = true
+	if largeSaveTimer.is_stopped():
+		largeSaveTimer.start()
+
+func forceScenerySave() -> void:
+	updateScenery(getSceneryText())
+
+func scenerySave() -> void:
+	if _sceneryWaitingForSave:
+		updateScenery(getSceneryText())
+		_sceneryWaitingForSave = false
+
+func getSceneryText() -> String:
+	return sceneryInput.text
+
+
+## TODO I'd like to say I've reached enough of these fields to start abstracting
+## and for simple save-as-script-text fields I think I can?
+## but *not* anything other than the saving
+
+
 func updateDescription(newValue: String) -> void:
 	item.description = newValue
 
 func updateConnections(newValue: String) -> void:
 	item.connectionsScript = newValue
+
+func updateScenery(newValue: String) -> void:
+	item.sceneryScript = newValue
 
 func updateUniqueName(newValue: String) -> void:
 	# worth it to check if there's a duplicate and stop the change?
@@ -107,15 +138,12 @@ func updateMapCellColor(newValue: Color) -> void:
 func saveBigFields() -> void:
 	descriptionSave()
 	connectionsSave()
+	scenerySave()
 
 
 func _on_map_cell_color_input_color_changed(color: Color) -> void:
 	updateMapCellColor(color)
 
-
-func _on_description_input_text_changed() -> void:
-	# not immediate. This can be a little chunkier and changes more often.
-	descriptionHasChanged()
 
 
 func _on_reference_string_input_text_changed(new_text: String) -> void:
@@ -126,8 +154,18 @@ func _on_display_name_input_text_changed(new_text: String) -> void:
 	updateDisplayName(new_text)
 
 
+# BIG TEXT/SCRIPT ITEM CONNECTIONS
+func _on_description_input_text_changed() -> void:
+	# not immediate. This can be a little chunkier and changes more often.
+	descriptionHasChanged()
+
+
 func _on_connections_input_text_changed() -> void:
 	connectionsHasChanged()
+
+
+func _on_scenery_input_text_changed() -> void:
+	sceneryHasChanged()
 
 
 func _on_timer_timeout() -> void:

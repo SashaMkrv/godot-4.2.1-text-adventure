@@ -43,9 +43,9 @@ func grabFocus() -> void:
 	self.grab_click_focus()
 
 # what a choice.
-func itemColorChanged(newColor: Color) -> void:
+func itemColorChanged(_newColor: Color) -> void:
 	updateColorForItem(item)
-func uniqueNameChanged(newName: String) -> void:
+func uniqueNameChanged(_newName: String) -> void:
 	updateTooltipForItem(item)
 
 func _updateColor() -> void:
@@ -60,20 +60,20 @@ func mapItemChanged() -> void:
 	updateUiForItem(item)
 
 
-func updateUiForItem(item: Item) -> void:
-	if item == null:
+func updateUiForItem(newItem: Item) -> void:
+	if newItem == null:
 		resetUiToEmpty()
 		return
-	updateTooltipForItem(item)
-	updateColorForItem(item)
+	updateTooltipForItem(newItem)
+	updateColorForItem(newItem)
 
 func resetUiToEmpty() -> void:
 	tooltip_text = ""
 	color = Color("333333")
 
 
-func updateTooltipForItem(item: Item) -> void:
-	tooltip_text = item.uniqueName
+func updateTooltipForItem(updateItem: Item) -> void:
+	tooltip_text = updateItem.uniqueName
 
-func updateColorForItem(item: Item) -> void:
-	color = item.flavorColor
+func updateColorForItem(updateItem: Item) -> void:
+	color = updateItem.flavorColor

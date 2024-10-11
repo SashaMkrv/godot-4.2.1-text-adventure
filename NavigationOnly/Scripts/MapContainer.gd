@@ -1,4 +1,5 @@
 extends Control
+class_name ItemMapEditor
 
 signal item_selected(item: Item)
 
@@ -28,7 +29,7 @@ func _map_item_clicked(coordinates: Vector2i) -> void:
 
 
 func handleCoordinateClick(coordinates: Vector2i) -> void:
-	var item = _getItemAt(coordinates)
+	var item := _getItemAt(coordinates)
 	if item != null:
 		print("existing item")
 		selectItem(item)
@@ -38,7 +39,7 @@ func handleCoordinateClick(coordinates: Vector2i) -> void:
 
 
 func newItemAtCoordinates(coordinates: Vector2i) -> void:
-	var newItem = Item.EmptyItem()
+	var newItem := Item.EmptyItem()
 	setItemAtCoordinates(newItem, coordinates)
 	selectItem(newItem)
 
@@ -53,33 +54,34 @@ func setItemAtCoordinates(item: Item, coordinates: Vector2i) -> void:
 
 
 func getChildAtCoordinates(coordinates: Vector2i) -> MapItem:
-	var index = coordinates.x * _gridSize.x + coordinates.y
+	var index := coordinates.x * _gridSize.x + coordinates.y
 	return _grid.get_children()[index]
 
 
 
 
 var _gridSize: Vector2i = Vector2i(30, 30)
-#var _firstChild: MapItem
 
-class GameEditMap:
-	var _visibleItems: Dictionary = {}
-	var _items: Dictionary = {}
-	var _entryPoint: Item
-
-class GamePlayMap:
-	var _items: Dictionary = {}
-	var _entryPoint: Item
-
-var _visibleItems: Dictionary = {
-	null: null
-}
-
-var _entryPoint: Item
+var _visibleItems: Dictionary = {}:
+	set(value):
+		if _visibleItems == value:
+			return
+		_visibleItems = value
+		_replaceGrid()
 
 
 
 func _ready() -> void:
+	_replaceGrid()
+
+func setItems(newItems: Dictionary) -> void:
+	_visibleItems = newItems
+
+func _replaceGrid() -> void:
+	if not is_node_ready():
+		return
+	for child in _grid.get_children():
+		child.queue_free()
 	_grid.columns = _gridSize.x
 	var item: MapItem
 	for x in _gridSize.x:

@@ -29,6 +29,8 @@ var flavorColor: Color:
 ## otherwise just keep the script.
 @export_multiline
 var connectionsScript: String
+@export_multiline
+var sceneryScript: String
 
 static func EmptyItem() -> Item:
 	return Item.new()

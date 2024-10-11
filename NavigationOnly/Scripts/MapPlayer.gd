@@ -9,10 +9,27 @@ var gameText: TextEdit = %GameText
 @onready
 var commandInput: LineEdit = %CommandInput
 
+# NOTE: keep an eye on any funky effects on
+
 @export
-var gameState: GameState
+var gameState: GameState:
+	set(value):
+		if gameState == value:
+			return
+		if gameState != null:
+			gameState.current_room_changed.disconnect(roomChanged)
+		gameState = value
+		if gameState != null:
+			var _err = gameState.current_room_changed.connect(roomChanged)
+		resetForCurrentGameInfo()
+		
 @export
-var gameData: GameData
+var gameData: GameData:
+	set(value):
+		if gameData == value:
+			return
+		gameData = value
+		resetForCurrentGameInfo()
 
 var currentItem: GameItem:
 	set(value):
@@ -28,31 +45,27 @@ var currentItem: GameItem:
 var _shortcutParser:= ShortcutParser.DefaultParser()
 var _commandParser:= CommandParser.new()
 
-# results of combining commands with items and state
-# print something
-# execute some kind of logic on state
-# move is a change in state, but also results in a thing being printed
-# AND clearing text.
-# So does looking around
-# so clear is a result
-# I guess results of commands are sequences of instructions?
-# clear screen, show this, change room
-# show this, remove from inv
-# show this, add to inv, change arbitrary var in state like so
-# hwo to track visited rooms?
-# keep a set of identifiers, I guess.
-# would have to keep track of vars as well
-# and where items are.
-# and player inventory.
-# eugh.
-# okay, no inventory, only scenery??
-# ONLY MOVEMENT RIGHT NOW.
+func _ready() -> void:
+	resetForCurrentGameInfo()
+
+func resetForCurrentGameInfo() -> void:
+	if gameData == null:
+		resetUiForEmpty()
+		return
+	if gameState == null:
+		gameState = GameState.new()
+		gameState.currentRoom = gameData.startRoom
+	
+	currentItem = gameData.items[gameState.currentRoom]
+	updateForItemIfReady()
+
 
 func changedItem() -> void:
-	if is_node_ready():
-		updateForItem()
+	updateForItemIfReady()
 
-func updateForItem() -> void:
+func updateForItemIfReady() -> void:
+	if not is_node_ready():
+		return
 	if currentItem == null:
 		resetUiForEmpty()
 		return
@@ -81,6 +94,8 @@ func _on_command_input_text_submitted(new_text: String) -> void:
 	handlePlayerCommandSubmission(new_text)
 
 func resetUiForEmpty() -> void:
+	if not is_node_ready():
+		return
 	gameText.clear()
 	titleLabel.remove_theme_color_override(&"font_color")
 	titleBackground.remove_theme_stylebox_override(&"panel")
@@ -120,14 +135,3 @@ func setGameTextToItem() -> void:
 
 func roomChanged() -> void:
 	currentItem = gameData.items[gameState.currentRoom]
-
-func _ready() -> void:
-	if gameData == null:
-		printerr("We are out of luck.")
-	if gameState == null:
-		gameState = GameState.new()
-		gameState.currentRoom = gameData.startRoom
-	
-	var _err := gameState.current_room_changed.connect(roomChanged)
-	currentItem = gameData.items[gameState.currentRoom]
-	updateForItem()
