@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://jjvqwipon87p"]
+
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/EditAndPlayController.gd" id="1_jfcxj"]
+[ext_resource type="PackedScene" uid="uid://dvhejcy7y42k7" path="res://NavigationOnly/Scenes/MapEditor.tscn" id="2_2p2rb"]
+[ext_resource type="PackedScene" uid="uid://dmrtadmcd1swc" path="res://NavigationOnly/Scenes/MapPlayer.tscn" id="3_jfl0p"]
+
+[node name="EditAndPlayMaps" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jfcxj")
+
+[node name="MapEditor" parent="." instance=ExtResource("2_2p2rb")]
+layout_mode = 1
+
+[node name="MapPlayer" parent="." instance=ExtResource("3_jfl0p")]
+visible = false
+layout_mode = 1

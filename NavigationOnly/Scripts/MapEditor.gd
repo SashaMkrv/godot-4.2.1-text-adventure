@@ -1,4 +1,5 @@
 extends Control
+class_name MapEditor
 
 @onready
 var itemEditor: ItemEditor = %ItemEditor

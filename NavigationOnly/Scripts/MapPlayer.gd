@@ -1,4 +1,5 @@
 extends Node
+class_name MapPlayer
 
 @onready
 var titleLabel: Label = %TitleLabel
