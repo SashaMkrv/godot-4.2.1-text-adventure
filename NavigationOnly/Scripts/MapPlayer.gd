@@ -22,7 +22,6 @@ var gameState: GameState:
 		gameState = value
 		if gameState != null:
 			var _err = gameState.current_room_changed.connect(roomChanged)
-		resetForCurrentGameInfo()
 		
 @export
 var gameData: GameData:
@@ -30,7 +29,6 @@ var gameData: GameData:
 		if gameData == value:
 			return
 		gameData = value
-		resetForCurrentGameInfo()
 
 var currentItem: GameItem:
 	set(value):

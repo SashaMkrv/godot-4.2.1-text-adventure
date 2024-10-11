@@ -12,8 +12,8 @@ currentRoom = "shimmer_sparkle"
 [sub_resource type="Resource" id="Resource_67j3b"]
 script = ExtResource("3_6cysh")
 uniqueName = "shimmer_sparkle"
-displayName = "Shimmer Sparkle"
-description = "Totally normal room. Normal place to be. It's blue, it shimmers, it sparkles. What's the problem?"
+displayName = "Something Has Gone Wrong"
+description = "Something went wrong with loading your game. This is the something went wrong room. I'm sorry about the situation."
 flavorColor = Color(0.0755657, 0.302803, 0.953585, 1)
 connections = {
 "NORTH": "shimmer_sparkle"
@@ -86,5 +86,8 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter command"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="text_submitted" from="MarginContainer/VBoxContainer/HBoxContainer/CommandInput" to="." method="_on_command_input_text_submitted"]

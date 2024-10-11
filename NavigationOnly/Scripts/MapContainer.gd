@@ -9,18 +9,19 @@ var _grid: GridContainer = $GridContainer
 @onready
 var mapItemScene: PackedScene = preload("res://NavigationOnly/Scenes/MapItem.tscn")
 
-class VisibleItem:
-	var color: Color
-	var uniqueName: String
+
+var _gridSize: Vector2i = Vector2i(30, 30)
+
+var _visibleItems: PlacedItems:
+	set(value):
+		if _visibleItems == value:
+			return
+		_visibleItems = value
+		_replaceGrid()
 
 
-
-##### Redo all of this to handle the fact that the visible items
-##### have names for values
-##### and that the items dictionary is the one that has the actual items
-##### this is ridiculous.
-##### that is an intermediate step for loading and saving.
-##### remove the special _items array! it's all _visible items all the way!
+func _ready() -> void:
+	_replaceGrid()
 
 
 func _map_item_clicked(coordinates: Vector2i) -> void:
@@ -29,28 +30,20 @@ func _map_item_clicked(coordinates: Vector2i) -> void:
 
 
 func handleCoordinateClick(coordinates: Vector2i) -> void:
-	var item := _getItemAt(coordinates)
-	if item != null:
-		print("existing item")
-		selectItem(item)
-	else:
-		print("new item making")
-		newItemAtCoordinates(coordinates)
+	var item := _visibleItems.getOrCreateEmptyItemAt(coordinates)
+	setChildIfNewItemAt(coordinates, item)
+	selectItem(item)
 
 
-func newItemAtCoordinates(coordinates: Vector2i) -> void:
-	var newItem := Item.EmptyItem()
-	setItemAtCoordinates(newItem, coordinates)
-	selectItem(newItem)
+func setChildIfNewItemAt(coordinates: Vector2i, item: Item) -> void:
+	var child:= getChildAtCoordinates(coordinates)
+	if child.item == item:
+		return
+	child.item = item
 
 
 func selectItem(item: Item) -> void:
 	item_selected.emit(item)
-
-
-func setItemAtCoordinates(item: Item, coordinates: Vector2i) -> void:
-	_visibleItems[coordinates] = item
-	getChildAtCoordinates(coordinates).item = item
 
 
 func getChildAtCoordinates(coordinates: Vector2i) -> MapItem:
@@ -59,22 +52,8 @@ func getChildAtCoordinates(coordinates: Vector2i) -> MapItem:
 
 
 
-
-var _gridSize: Vector2i = Vector2i(30, 30)
-
-var _visibleItems: Dictionary = {}:
-	set(value):
-		if _visibleItems == value:
-			return
-		_visibleItems = value
-		_replaceGrid()
-
-
-
-func _ready() -> void:
-	_replaceGrid()
-
-func setItems(newItems: Dictionary) -> void:
+func setItems(newItems: PlacedItems) -> void:
+	print(newItems)
 	_visibleItems = newItems
 
 func _replaceGrid() -> void:
@@ -90,12 +69,5 @@ func _replaceGrid() -> void:
 			item.coordinates = Vector2i(x, y)
 			item.mapCoordinatesClicked.connect(_map_item_clicked)
 			_grid.add_child(item)
-
-
-func _getItemAt(coordinates: Vector2i) -> Item:
-	if _visibleItems.has(coordinates):
-		return _visibleItems[coordinates]
-	return null
-
 
 # TODO add dict for accessing items by name (way more fiddly handling)

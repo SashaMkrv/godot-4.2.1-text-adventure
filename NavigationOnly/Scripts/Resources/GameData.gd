@@ -22,18 +22,16 @@ func _init(_items: Dictionary = {}, _startRoom: String = "") -> void:
 
 # this is a static function! these are not static variables! what do you mean????
 @warning_ignore("shadowed_variable")
-static func CreateWithEditingData(items: Dictionary, startRoom: String) -> GameData:
-	return GameData.new(_convertItemsToGameItems(items), startRoom)
+static func CreateWithEditingData(editorGame: EditorGame) -> GameData:
+	return GameData.new(_convertPlacedItemsToGameItems(editorGame.placedItems), editorGame.startingRoomIdentifier)
 
 @warning_ignore("shadowed_variable")
-static func _convertItemsToGameItems(items: Dictionary) -> Dictionary:
+static func _convertPlacedItemsToGameItems(items: PlacedItems) -> Dictionary:
 	var returnDict := {}
-	# I would *strongly* prefer these be strings, but who am I to judge
-	# their route is mysterious to me.
-	var testItem: Variant
 	var item: Item
-	for key:Variant in items.keys():
-		testItem = items[key]
+	for testItem in items.getAllItems():
+		if testItem == null:
+			continue
 		if testItem is Item:
 			# an implicit cast is the polite way to handle this
 			# as opposed to item = testItem as Item
@@ -42,5 +40,5 @@ static func _convertItemsToGameItems(items: Dictionary) -> Dictionary:
 		else:
 			printerr("What is this in the game items? " + str(testItem))
 			continue
-		returnDict[key] = GameItem.CreateFromEditingItem(item)
+		returnDict[item.uniqueName] = GameItem.CreateFromEditingItem(item)
 	return returnDict

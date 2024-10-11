@@ -73,12 +73,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Room Identifier"
 
-[node name="PlayButton" type="Button" parent="Editor/VSplitContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Play Map"
-
 [node name="ScrollContainer" type="ScrollContainer" parent="Editor/VSplitContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -228,7 +222,6 @@ CHARLOTTE: example_string_for_arbitrary_direction"
 wait_time = 5.0
 
 [connection signal="text_changed" from="Editor/VSplitContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer2/HBoxContainer2/StartingRoomInput" to="." method="_on_starting_room_input_text_changed"]
-[connection signal="pressed" from="Editor/VSplitContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer2/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="item_selected" from="Editor/VSplitContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/ItemMapEditor" to="." method="_on_center_container_item_selected"]
 [connection signal="color_changed" from="Editor/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/HBoxContainer4/HBoxContainer/MapCellColorInput" to="Editor/VSplitContainer/ItemEditor" method="_on_map_cell_color_input_color_changed"]
 [connection signal="text_changed" from="Editor/VSplitContainer/ItemEditor/Room/MarginContainer/VBoxContainer/DescriptionInput" to="Editor/VSplitContainer/ItemEditor" method="_on_description_input_text_changed"]

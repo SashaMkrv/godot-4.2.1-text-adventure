@@ -11,7 +11,7 @@ var mapName: String = "Map"
 @export
 var gridSize: Vector2i = Vector2i(30, 30)
 @export
-var placedItems: Dictionary = {}
+var placedItems: PlacedItems = PlacedItems.Empty()
 
 
 static func NewEmptyGame() -> EditorGame:
