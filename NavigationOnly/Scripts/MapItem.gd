@@ -32,8 +32,8 @@ func disconnectSignalsFromCurrentItem() -> void:
 func connectSignalsToCurrentItem() -> void:
 	if item == null:
 		return
-	item.color_changed.connect(itemColorChanged)
-	item.unique_name_changed.connect(uniqueNameChanged)
+	var _err := item.color_changed.connect(itemColorChanged)
+	_err = item.unique_name_changed.connect(uniqueNameChanged)
 
 func _ready() -> void:
 	_updateColor()

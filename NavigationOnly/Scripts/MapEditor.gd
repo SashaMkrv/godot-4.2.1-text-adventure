@@ -33,7 +33,6 @@ func _item_selected(item: Item) -> void:
 func updateUiForCurrentGame() -> void:
 	if not is_node_ready():
 		return
-	print(_currentGame.placedItems)
 	itemMapEditor.setItems(_currentGame.placedItems)
 	startingRoomInput.text = _currentGame.startingRoomIdentifier
 

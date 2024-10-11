@@ -48,15 +48,17 @@ layout_mode = 2
 text = "Editing"
 
 [node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Play Map"
 
-[node name="StopButton" type="Button" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
-disabled = true
-text = "Stop"
+size_flags_horizontal = 10
+text = "Edit Map"
 
 [node name="BodyMarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -72,3 +74,4 @@ visible = false
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]

@@ -21,7 +21,7 @@ var gameState: GameState:
 			gameState.current_room_changed.disconnect(roomChanged)
 		gameState = value
 		if gameState != null:
-			var _err = gameState.current_room_changed.connect(roomChanged)
+			var _err := gameState.current_room_changed.connect(roomChanged)
 		
 @export
 var gameData: GameData:

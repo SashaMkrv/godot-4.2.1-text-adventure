@@ -53,21 +53,22 @@ func getChildAtCoordinates(coordinates: Vector2i) -> MapItem:
 
 
 func setItems(newItems: PlacedItems) -> void:
-	print(newItems)
 	_visibleItems = newItems
 
 func _replaceGrid() -> void:
 	if not is_node_ready():
 		return
 	for child in _grid.get_children():
-		child.queue_free()
+		if child is MapItem:
+			child.mapCoordinatesClicked.disconnect(_map_item_clicked)
+			child.queue_free()
 	_grid.columns = _gridSize.x
 	var item: MapItem
 	for x in _gridSize.x:
 		for y in _gridSize.y:
 			item = mapItemScene.instantiate()
 			item.coordinates = Vector2i(x, y)
-			item.mapCoordinatesClicked.connect(_map_item_clicked)
+			var _err = item.mapCoordinatesClicked.connect(_map_item_clicked)
 			_grid.add_child(item)
 
 # TODO add dict for accessing items by name (way more fiddly handling)

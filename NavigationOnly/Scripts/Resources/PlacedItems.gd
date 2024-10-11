@@ -38,6 +38,6 @@ func getOrCreateEmptyItemAt(coordinates: Vector2i) -> Item:
 	if isSetAt(coordinates):
 		return getAt(coordinates)
 	
-	var newItem = Item.EmptyItem()
+	var newItem := Item.EmptyItem()
 	setAt(coordinates, newItem)
 	return getAt(coordinates)

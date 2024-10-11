@@ -5,6 +5,11 @@ var editor: MapEditor = %MapEditor
 @onready
 var player: MapPlayer = %MapPlayer
 
+@onready
+var editButton: Button = %EditButton
+@onready
+var playButton: Button = %PlayButton
+
 enum States {
 	PLAYING,
 	EDITING
@@ -24,12 +29,14 @@ func editMap() -> void:
 func transitionToPlay(mapToBuild: EditorGame) -> void:
 	match state:
 		States.EDITING:
-			disableAndHide(editor)
+			toggleEditItems(false)
 		States.PLAYING:
 			return
-	enableAndShow(player)
+	
+	togglePlayItems(true)
+	
 	print_debug("Building game data")
-	var gameData = GameData.CreateWithEditingData(mapToBuild)
+	var gameData := GameData.CreateWithEditingData(mapToBuild)
 	player.gameState = null
 	player.gameData = gameData
 	player.resetForCurrentGameInfo()
@@ -40,10 +47,10 @@ func transitionToEdit() -> void:
 		States.EDITING:
 			return
 		States.PLAYING:
-			disableAndHide(player)
-	enableAndShow(editor)
+			togglePlayItems(false)
+	
+	toggleEditItems(true)
 	state = States.EDITING
-
 
 func disableAndHide(node: Node) -> void:
 	node.process_mode = Node.PROCESS_MODE_DISABLED
@@ -54,5 +61,21 @@ func enableAndShow(node: Node) -> void:
 	node.visible = true
 
 
+func toggleItems(nodes: Array[Node], visible: bool) -> void:
+	for node in nodes:
+		if visible:
+			enableAndShow(node)
+		else:
+			disableAndHide(node)
+
+func toggleEditItems(visible: bool) -> void:
+	toggleItems([playButton, editor], visible)
+
+func togglePlayItems(visible: bool) -> void:
+	toggleItems([editButton, player], visible)
+
 func _on_play_button_pressed() -> void:
 	playMap()
+
+func _on_edit_button_pressed() -> void:
+	editMap()
