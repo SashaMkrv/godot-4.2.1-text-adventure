@@ -15,7 +15,6 @@ func _init(transformFunction: Callable = _defaultTransform) -> void:
 func transform(string: String) -> Variant:
 	return stringTransform.call(string)
 
-
 static func _colonSeparatedTargetTransform(string: String) -> Dictionary:
 	# split on newline, ignore if empty
 	var connections := {}
@@ -29,10 +28,10 @@ static func _colonSeparatedTargetTransform(string: String) -> Dictionary:
 		
 		var connectionTermsCount := uncommented.get_slice_count(":")
 		if connectionTermsCount < 2:
-			printerr("missing target id in: " + uncommented)
+			printerr("missing target in: " + uncommented)
 			continue
 		if connectionTermsCount > 2:
-			printerr("too many colons for connection: " + uncommented)
+			printerr("expected one colon in: " + uncommented)
 			continue
 		
 		var terms := uncommented.split(":")
@@ -40,7 +39,7 @@ static func _colonSeparatedTargetTransform(string: String) -> Dictionary:
 		var destination := terms[1].strip_edges()
 		
 		if connections.has(direction):
-			printerr("duplicate direction in connections: " + direction)
+			printerr("duplicate item for: " + direction)
 			continue
 		
 		connections[direction] = destination

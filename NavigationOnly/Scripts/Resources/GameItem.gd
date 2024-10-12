@@ -13,6 +13,8 @@ var flavorColor: Color
 var connections: Dictionary
 @export
 var scenery: Dictionary
+@export
+var aliases: Dictionary
 
 
 static func parseScriptForDictionary(parser: ScriptParser, script: String) -> Dictionary:
@@ -29,6 +31,7 @@ static func CreateFromEditingItem(item: Item) -> GameItem:
 	
 	var parsedConnections := parseScriptForDictionary(directionTargetParser, item.connectionsScript)
 	var parsedScenery := parseScriptForDictionary(directionTargetParser, item.sceneryScript)
+	var parsedAliases := parseScriptForDictionary(directionTargetParser, item.sceneryScript)
 	
 	return GameItem.new(
 		item.uniqueName,
@@ -36,7 +39,8 @@ static func CreateFromEditingItem(item: Item) -> GameItem:
 		item.description,
 		item.flavorColor,
 		parsedConnections,
-		parsedScenery
+		parsedScenery,
+		parsedAliases
 	)
 
 func _init(
@@ -45,7 +49,8 @@ func _init(
 	_description: String = "",
 	_flavorColor: Color = Color.BLACK,
 	_connections: Dictionary = {},
-	_scenery: Dictionary = {}
+	_scenery: Dictionary = {},
+	_aliases: Dictionary = {}
 ) -> void:
 	uniqueName = _uniqueName
 	displayName = _displayName
@@ -53,3 +58,4 @@ func _init(
 	flavorColor = _flavorColor
 	connections = _connections
 	scenery = _scenery
+	aliases = _aliases

@@ -23,6 +23,9 @@ func _init(shortcuts: Dictionary) -> void:
 static func DefaultParser() -> ShortcutParser:
 	return ShortcutParser.new(_defaultShortcuts.duplicate())
 
+func addAlias(original: String, replacement: String) -> void:
+	_shortcuts[original] = replacement
+
 func parse(originalText: String) -> String:
 	var text := originalText.strip_edges().to_upper()
 	if _shortcuts.keys().has(text):

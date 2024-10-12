@@ -31,6 +31,8 @@ var flavorColor: Color:
 var connectionsScript: String
 @export_multiline
 var sceneryScript: String
+@export_multiline
+var aliasScript: String
 
 static func EmptyItem() -> Item:
 	return Item.new()
