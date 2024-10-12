@@ -99,6 +99,9 @@ func updateFields() -> void:
 		aliasInput.text = item.aliasScript
 
 
+func requestSave() -> void:
+	savePendingBigFields()
+
 # BIG TEXT/SCRIPT UPDATE FUNCTIONS
 
 func addScriptToSaveQueue(script: BigTextItem) -> void:

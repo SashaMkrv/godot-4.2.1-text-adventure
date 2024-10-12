@@ -23,6 +23,14 @@ func getGame() -> EditorGame:
 	return editor.getGame()
 
 
+func setGame(game: EditorGame) -> void:
+	editor.setGame(game)
+	# TODO hook this flow up
+	pass
+	# set game on editor
+	# reset state for player and editor
+	# reset state on controller, so swap to editor probably.
+
 
 func playMap() -> void:
 	transitionToPlay(getGame())

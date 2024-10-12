@@ -14,6 +14,7 @@ var _currentGame: EditorGame = EditorGame.NewEmptyGame()
 
 
 func getGame() -> EditorGame:
+	itemEditor.requestSave()
 	return _currentGame
 
 func setGame(game: EditorGame) -> void:
