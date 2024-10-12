@@ -27,8 +27,22 @@ func addAlias(original: String, replacement: String) -> void:
 	_shortcuts[original] = replacement
 
 func parse(originalText: String) -> String:
+	return parseWithMapAndContextAliases(originalText, _shortcuts, {})
+
+func parseWithContextAliases(originalText: String, aliases: Dictionary) -> String:
+	return parseWithMapAndContextAliases(originalText, _shortcuts, aliases)
+
+static func parseWithMapAndContextAliases(
+	originalText: String,
+	mapAliases: Dictionary,
+	contextAliases: Dictionary
+) -> String:
 	var text := originalText.strip_edges().to_upper()
-	if _shortcuts.keys().has(text):
-		return _shortcuts[text]
+	if contextAliases.has(text):
+		return contextAliases[text]
+	if mapAliases.has(text):
+		return mapAliases[text]
 	return originalText
+
+
 	

@@ -58,7 +58,6 @@ func resetForCurrentGameInfo() -> void:
 	currentItem = gameData.items[gameState.currentRoom]
 	updateForItemIfReady()
 
-
 func changedItem() -> void:
 	updateForItemIfReady()
 
@@ -78,7 +77,7 @@ func handlePlayerCommandSubmission(rawText: String) -> void:
 	commandInput.clear()
 	var text := rawText.strip_edges()
 	addCommandToGame(text)
-	var deshortcut := _shortcutParser.parse(text)
+	var deshortcut := _shortcutParser.parseWithContextAliases(text, currentItem.aliases)
 	var instructions := _commandParser.parse(deshortcut, currentItem)
 	executeInstructions(instructions)
 
