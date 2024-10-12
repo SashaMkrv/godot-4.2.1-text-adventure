@@ -32,8 +32,6 @@ var _descriptionWaitingForSave: bool = false
 var _connectionsWaitingForSave: bool = false
 var _sceneryWaitingForSave: bool = false
 
-var connectionTransformer:= ScriptParser.ColonSeparatedConnectionTransformer()
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updateFields()

@@ -16,7 +16,7 @@ func transform(string: String) -> Variant:
 	return stringTransform.call(string)
 
 
-static func _colonStringConnectionTransform(string: String) -> Dictionary:
+static func _colonSeparatedTargetTransform(string: String) -> Dictionary:
 	# split on newline, ignore if empty
 	var connections := {}
 	var lines := string.split("\n", false)
@@ -29,7 +29,7 @@ static func _colonStringConnectionTransform(string: String) -> Dictionary:
 		
 		var connectionTermsCount := uncommented.get_slice_count(":")
 		if connectionTermsCount < 2:
-			printerr("missing connection info in: " + uncommented)
+			printerr("missing target id in: " + uncommented)
 			continue
 		if connectionTermsCount > 2:
 			printerr("too many colons for connection: " + uncommented)
@@ -46,5 +46,5 @@ static func _colonStringConnectionTransform(string: String) -> Dictionary:
 		connections[direction] = destination
 	return connections
 
-static func ColonSeparatedConnectionTransformer() -> ScriptParser:
-	return ScriptParser.new(_colonStringConnectionTransform)
+static func ColonSeparatedTargetTransformer() -> ScriptParser:
+	return ScriptParser.new(_colonSeparatedTargetTransform)

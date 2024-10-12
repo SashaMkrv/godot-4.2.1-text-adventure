@@ -18,6 +18,7 @@ flavorColor = Color(0.0755657, 0.302803, 0.953585, 1)
 connections = {
 "NORTH": "shimmer_sparkle"
 }
+scenery = {}
 
 [sub_resource type="Resource" id="Resource_uqil6"]
 script = ExtResource("3_gvk3u")
