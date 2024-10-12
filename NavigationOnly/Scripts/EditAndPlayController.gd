@@ -52,16 +52,16 @@ func transitionToEdit() -> void:
 	toggleEditItems(true)
 	state = States.EDITING
 
-func disableAndHide(node: Node) -> void:
-	node.process_mode = Node.PROCESS_MODE_DISABLED
-	node.visible = false
+func disableAndHide(control: Control) -> void:
+	control.process_mode = Node.PROCESS_MODE_DISABLED
+	control.visible = false
 
-func enableAndShow(node: Node) -> void:
-	node.process_mode = Node.PROCESS_MODE_INHERIT
-	node.visible = true
+func enableAndShow(control: Control) -> void:
+	control.process_mode = Node.PROCESS_MODE_INHERIT
+	control.visible = true
 
 
-func toggleItems(nodes: Array[Node], visible: bool) -> void:
+func toggleItems(nodes: Array[Control], visible: bool) -> void:
 	for node in nodes:
 		if visible:
 			enableAndShow(node)
