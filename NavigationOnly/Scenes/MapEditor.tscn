@@ -218,6 +218,27 @@ placeholder_text = "EAST: example_room_reference_string
 SOUTH: example_room_reference_string
 CHARLOTTE: example_string_for_arbitrary_direction"
 
+[node name="Aliases" type="PanelContainer" parent="Editor/VSplitContainer/ItemEditor"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_tab_index = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Editor/VSplitContainer/ItemEditor/Aliases"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="AliasInput" type="CodeEdit" parent="Editor/VSplitContainer/ItemEditor/Aliases/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "EAST: example_room_reference_string
+SOUTH: example_room_reference_string
+CHARLOTTE: example_string_for_arbitrary_direction"
+delimiter_strings = Array[String](["\" \"", "' '"])
+
 [node name="Timer" type="Timer" parent="Editor/VSplitContainer/ItemEditor"]
 wait_time = 5.0
 
@@ -229,4 +250,5 @@ wait_time = 5.0
 [connection signal="text_changed" from="Editor/VSplitContainer/ItemEditor/Item/MarginContainer/VBoxContainer/HBoxContainer3/DisplayNameInput" to="Editor/VSplitContainer/ItemEditor" method="_on_display_name_input_text_changed"]
 [connection signal="text_changed" from="Editor/VSplitContainer/ItemEditor/Connections/MarginContainer/ConnectionsInput" to="Editor/VSplitContainer/ItemEditor" method="_on_connections_input_text_changed"]
 [connection signal="text_changed" from="Editor/VSplitContainer/ItemEditor/Scenery/MarginContainer/SceneryInput" to="Editor/VSplitContainer/ItemEditor" method="_on_scenery_input_text_changed"]
+[connection signal="text_changed" from="Editor/VSplitContainer/ItemEditor/Aliases/MarginContainer/AliasInput" to="Editor/VSplitContainer/ItemEditor" method="_on_alias_input_text_changed"]
 [connection signal="timeout" from="Editor/VSplitContainer/ItemEditor/Timer" to="Editor/VSplitContainer/ItemEditor" method="_on_timer_timeout"]

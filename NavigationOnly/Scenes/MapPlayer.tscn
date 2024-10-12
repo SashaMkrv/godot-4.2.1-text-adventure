@@ -19,6 +19,7 @@ connections = {
 "NORTH": "shimmer_sparkle"
 }
 scenery = {}
+aliases = {}
 
 [sub_resource type="Resource" id="Resource_uqil6"]
 script = ExtResource("3_gvk3u")
