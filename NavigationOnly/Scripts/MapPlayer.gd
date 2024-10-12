@@ -83,10 +83,15 @@ func handlePlayerCommandSubmission(rawText: String) -> void:
 
 func executeInstructions(instructions: Array[Instruction]) -> void:
 	for instruction in instructions:
-		instruction.executeChange(gameState)
+		var result := instruction.executeChange(gameState)
+		if result.print:
+			addResultToGame(result.message)
 
 func addCommandToGame(command: String) -> void:
 	gameText.text += "\n> " + command
+
+func addResultToGame(message: String) -> void:
+	gameText.text += "\n" + message
 
 func _on_command_input_text_submitted(new_text: String) -> void:
 	handlePlayerCommandSubmission(new_text)

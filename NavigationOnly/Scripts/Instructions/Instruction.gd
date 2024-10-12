@@ -1,6 +1,13 @@
 extends Resource
 class_name Instruction
 
+class Result:
+	var message: String
+	var print: bool
+	func _init(print: bool, message: String) -> void:
+		self.message = message
+		self.print = print
+
 # This feels like a glowing red antipattern
 
 # We have things that affect the state of the game
@@ -21,6 +28,6 @@ class_name Instruction
 # or just sceneryDescription or examine description???? mmmmMMMMMM
 
 ## Please Implement In Children!!!
-func executeChange(_gameState: GameState) -> void:
+func executeChange(_gameState: GameState) -> Result:
 	# I need a game state resource.
-	pass
+	return Result.new(false, "Empty Instruction")

@@ -39,6 +39,11 @@ func parse(rawCommand: String, context: GameItem) -> Array[Instruction]:
 			if destination == "":
 				return [ErrorInstruction.new("I can't go " + direction)]
 			return [MoveRoom.new(destination)]
+		"EXAMINE","X":
+			var scenery := _sceneryForDirection(direction, context)
+			if scenery == "":
+				return [ErrorInstruction.new("I don't see " + direction)]
+			return [ShowResults.new("Oh. Oh no. this doesn't have access to all items. And it shouldn't.")]
 		_:
 			return [ErrorInstruction.new("I don't know how to " + verb)]
 			
@@ -47,3 +52,6 @@ func parse(rawCommand: String, context: GameItem) -> Array[Instruction]:
 
 func _destinationForDirection(direction: String, context: GameItem) -> String:
 	return context.connections.get(direction, "")
+
+func _sceneryForDirection(direction: String, context: GameItem) -> String:
+	return context.scenery.get(direction, "")

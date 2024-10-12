@@ -13,8 +13,3 @@ var currentRoom: String:
 		currentRoom = value
 		# TODO make sure you unconnect this anytime gamestate is changed.
 		current_room_changed.emit()
-
-
-### Should be STRING KEYED
-#@export
-#var userStateItems: Dictionary
