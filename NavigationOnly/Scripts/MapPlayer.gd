@@ -83,7 +83,7 @@ func handlePlayerCommandSubmission(rawText: String) -> void:
 
 func executeInstructions(instructions: Array[Instruction]) -> void:
 	for instruction in instructions:
-		var result := instruction.executeChange(gameState)
+		var result := instruction.execute(gameState, gameData)
 		if result.print:
 			addResultToGame(result.message)
 

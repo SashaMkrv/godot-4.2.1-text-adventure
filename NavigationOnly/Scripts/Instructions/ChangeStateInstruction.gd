@@ -20,5 +20,5 @@ func _init(key: Variant, value: String, type: Type = Type.SET):
 	self.value = value
 	self.type = type
 
-func executeChange(gameState: GameState) -> Result:
+func execute(_gameState: GameState, _gameData: GameData) -> Result:
 	return Result.new(false, "Change User State isn't doing anything.")

@@ -27,7 +27,9 @@ class Result:
 # uh. add more text...?
 # or just sceneryDescription or examine description???? mmmmMMMMMM
 
+#I think maybe results should handle the game data bit, but. Refactor if need be! Discover other issues!
+
 ## Please Implement In Children!!!
-func executeChange(_gameState: GameState) -> Result:
+func execute(_gameState: GameState, _gameData: GameData) -> Result:
 	# I need a game state resource.
 	return Result.new(false, "Empty Instruction")

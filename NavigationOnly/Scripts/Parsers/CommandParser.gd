@@ -43,7 +43,7 @@ func parse(rawCommand: String, context: GameItem) -> Array[Instruction]:
 			var scenery := _sceneryForDirection(direction, context)
 			if scenery == "":
 				return [ErrorInstruction.new("I don't see " + direction)]
-			return [ShowResults.new("Oh. Oh no. this doesn't have access to all items. And it shouldn't.")]
+			return [ShowItem.new(scenery)]
 		_:
 			return [ErrorInstruction.new("I don't know how to " + verb)]
 			
