@@ -31,7 +31,7 @@ static func CreateFromEditingItem(item: Item) -> GameItem:
 	
 	var parsedConnections := parseScriptForDictionary(directionTargetParser, item.connectionsScript)
 	var parsedScenery := parseScriptForDictionary(directionTargetParser, item.sceneryScript)
-	var parsedAliases := parseScriptForDictionary(directionTargetParser, item.sceneryScript)
+	var parsedAliases := parseScriptForDictionary(directionTargetParser, item.aliasScript)
 	
 	return GameItem.new(
 		item.uniqueName,
