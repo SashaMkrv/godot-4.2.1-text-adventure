@@ -68,7 +68,7 @@ func _replaceGrid() -> void:
 		for y in _gridSize.y:
 			item = mapItemScene.instantiate()
 			item.coordinates = Vector2i(x, y)
-			var _err = item.mapCoordinatesClicked.connect(_map_item_clicked)
+			var _err := item.mapCoordinatesClicked.connect(_map_item_clicked)
 			_grid.add_child(item)
 
 # TODO add dict for accessing items by name (way more fiddly handling)

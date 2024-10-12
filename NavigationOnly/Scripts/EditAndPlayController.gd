@@ -17,14 +17,20 @@ enum States {
 
 var state:= States.EDITING
 
-func playMap() -> void:
-	transitionToPlay(getGame())
+
 
 func getGame() -> EditorGame:
 	return editor.getGame()
 
+
+
+func playMap() -> void:
+	transitionToPlay(getGame())
+
 func editMap() -> void:
 	transitionToEdit()
+
+
 
 func transitionToPlay(mapToBuild: EditorGame) -> void:
 	match state:
@@ -52,6 +58,8 @@ func transitionToEdit() -> void:
 	toggleEditItems(true)
 	state = States.EDITING
 
+
+
 func disableAndHide(control: Control) -> void:
 	control.process_mode = Node.PROCESS_MODE_DISABLED
 	control.visible = false
@@ -59,7 +67,6 @@ func disableAndHide(control: Control) -> void:
 func enableAndShow(control: Control) -> void:
 	control.process_mode = Node.PROCESS_MODE_INHERIT
 	control.visible = true
-
 
 func toggleItems(nodes: Array[Control], visible: bool) -> void:
 	for node in nodes:
@@ -73,6 +80,8 @@ func toggleEditItems(visible: bool) -> void:
 
 func togglePlayItems(visible: bool) -> void:
 	toggleItems([editButton, player], visible)
+
+
 
 func _on_play_button_pressed() -> void:
 	playMap()
