@@ -237,7 +237,6 @@ layout_mode = 2
 placeholder_text = "EAST: example_room_reference_string
 SOUTH: example_room_reference_string
 CHARLOTTE: example_string_for_arbitrary_direction"
-delimiter_strings = Array[String](["\" \"", "' '"])
 
 [node name="Timer" type="Timer" parent="Editor/VSplitContainer/ItemEditor"]
 wait_time = 5.0

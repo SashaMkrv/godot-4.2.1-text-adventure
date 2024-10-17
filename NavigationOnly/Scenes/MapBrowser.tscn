@@ -1,0 +1,302 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd2ge0v8oe2sq"]
+
+[sub_resource type="SystemFont" id="SystemFont_b25du"]
+font_names = PackedStringArray("Sans-Serif")
+font_weight = 300
+
+[node name="MapBrowser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MapListContainer" type="PanelContainer" parent="MarginContainer/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MapListItem" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem2" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem2/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem2/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem2/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem3" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem3/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem3/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem3/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem4" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem4"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem4/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem4/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem4/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem5" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem5"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem5/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem5/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem5/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem6" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem6"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem6/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem6/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem6/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem7" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem7"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem7/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem7/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem7/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem8" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem8"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem8/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem8/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem8/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapListItem9" type="PanelContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapListItem" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem9"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem9/MapListItem"]
+layout_mode = 2
+
+[node name="MapItemName" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem9/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map name"
+uppercase = true
+
+[node name="MapItemDescription" type="Label" parent="MarginContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/VBoxContainer/MapListItem9/MapListItem/VBoxContainer"]
+layout_mode = 2
+text = "This is a map item description. It is not caps to distinguish it from the map name. I didn't bother making this one a different font."
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="MapInfoContainer" type="PanelContainer" parent="MarginContainer/VSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/MapInfoContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/MapInfoContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MapNameLabel" type="Label" parent="MarginContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map Name"
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="OpenMapButton" type="Button" parent="MarginContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Open Map"
+
+[node name="MapDescriptionLabel" type="Label" parent="MarginContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = SubResource("SystemFont_b25du")
+text = "Map Description. How long can this go and how many lines can I have. I would prefer this be less bold. What happens if the contents of the label get bigger? Will this container also size up with it? I will be quite sad if it doesn't, but then I have to test when entire blobs of text are inside of this thing, which also doesn't sound fun. Here is comes, the end of the line. Where will we go, to oh. That's well."
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 3
