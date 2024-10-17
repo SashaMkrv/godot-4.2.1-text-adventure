@@ -65,12 +65,6 @@ func _on_edit_and_play_maps_exit_editor() -> void:
 	backToBrowser()
 
 
-func resetEditor() -> void:
-	pass
-func resetBrowser() -> void:
-	pass
-
-
 
 func toggleOffControl(control: Control) -> void:
 	control.visible = false
