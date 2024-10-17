@@ -4,10 +4,12 @@ class_name MapBrowser
 signal opening_map(editorGame: EditorGame)
 
 @export
-var games: Array[EditorGame] = [
-	EditorGame.NewEmptyGame(),
-	EditorGame.NewEmptyGame()
-]
+var games: Array[EditorGame] = []:
+	set(value):
+		if games == value:
+			return
+		games = value
+		updateUi()
 
 @onready
 var mapInfoContainer: Control = %MapInfoContainer
