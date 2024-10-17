@@ -38,34 +38,34 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Body/MarginContainer/HeaderContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Body/MarginContainer/HeaderContainer"]
 layout_mode = 2
 
-[node name="StateLabel" type="Label" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="StateLabel" type="Label" parent="Body/MarginContainer/HeaderContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Editing"
 
-[node name="PlayButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="Body/MarginContainer/HeaderContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Play Map"
 
-[node name="EditButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="Body/MarginContainer/HeaderContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Edit Map"
 
-[node name="SaveButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="SaveButton" type="Button" parent="Body/MarginContainer/HeaderContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Save Map"
 
-[node name="ExitButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="ExitButton" type="Button" parent="Body/MarginContainer/HeaderContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Exit Editor"
@@ -130,9 +130,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Cancel"
 
-[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
-[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ConfirmExit" to="." method="_on_confirm_exit_pressed"]
 [connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelExit" to="." method="_on_cancel_exit_pressed"]
