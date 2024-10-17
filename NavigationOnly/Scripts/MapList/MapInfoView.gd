@@ -15,17 +15,12 @@ var nameLabel: Label = %MapNameLabel
 @onready
 var descriptionLabel: Label = %MapDescriptionLabel
 
-@onready
-var openMapButton: Button = %OpenMapButton
+#@onready
+#var openMapButton: Button = %OpenMapButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updateUi()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func updateUi() -> void:
 	if not is_node_ready():
