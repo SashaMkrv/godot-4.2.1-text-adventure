@@ -1,5 +1,7 @@
 extends Node
 
+signal opening_map(editorGame: EditorGame)
+
 @export
 var games: Array[EditorGame] = [
 	EditorGame.NewEmptyGame(),
@@ -40,7 +42,7 @@ func updateSelectedMap(game: EditorGame) -> void:
 	currentSelectedGame = game
 
 func openMap(game: EditorGame) -> void:
-	print_debug(game.mapName)
+	opening_map.emit(game)
 
 func _on_make_new_map_button_pressed() -> void:
 	openMap(EditorGame.NewEmptyGame())
