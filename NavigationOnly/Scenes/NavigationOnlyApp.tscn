@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bej41ay64pyy"]
+
+[ext_resource type="Script" path="res://NavigationOnly/Scripts/AppStateController.gd" id="1_nqfgg"]
+[ext_resource type="PackedScene" uid="uid://bd2ge0v8oe2sq" path="res://NavigationOnly/Scenes/MapBrowser.tscn" id="2_hlsaf"]
+[ext_resource type="PackedScene" uid="uid://jjvqwipon87p" path="res://NavigationOnly/Scenes/EditAndPlayMaps.tscn" id="3_s1wlt"]
+
+[node name="NavigationOnlyApp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nqfgg")
+
+[node name="MapBrowser" parent="." instance=ExtResource("2_hlsaf")]
+layout_mode = 1
+
+[node name="EditAndPlayMaps" parent="." instance=ExtResource("3_s1wlt")]
+visible = false
+layout_mode = 1
+
+[connection signal="opening_map" from="MapBrowser" to="." method="_on_map_browser_opening_map"]
+[connection signal="exit_editor" from="EditAndPlayMaps" to="." method="_on_edit_and_play_maps_exit_editor"]
+[connection signal="save_game_to_disk" from="EditAndPlayMaps" to="." method="_on_edit_and_play_maps_save_game_to_disk"]

@@ -1,6 +1,8 @@
 extends Control
 class_name EditAndPlayController
 
+# there is probably no reason for this to be a signal
+# and be leaving this hallowed hall of editing
 signal save_game_to_disk(editorGame: EditorGame)
 signal exit_editor()
 
@@ -43,12 +45,21 @@ func getGame() -> EditorGame:
 
 
 func setGame(game: EditorGame) -> void:
+	reset()
+	# Don't make it so you need to do multiple things for
+	# a result. Yes Uncle Bob, say I, I *do* forget to do all the
+	# things I need to do if there is more than one. Excellent advice.
+	# Then I say, well, this will be ok, I won't need to use it more than the once
+	# Then I need to use it again and forget to do the update call and cause myself much grief.
+	# Let this be a lesson to me. Again.
+	# And now I don't remember the reason why I didn't want to
+	# put the updateUi *inside* of the setGame function.
+	# TODO find out why I made this choice.
 	editor.setGame(game)
-	# TODO hook this flow up
-	pass
-	# set game on editor
-	# reset state for player and editor
-	# reset state on controller, so swap to editor probably.
+	editor.updateUiForCurrentGame()
+
+func reset() -> void:
+	transitionToEdit()
 
 
 func playMap() -> void:
@@ -64,7 +75,7 @@ func confirmExitEditor() -> void:
 	exit_editor.emit()
 
 func trySaveGameToDisk() -> void:
-	save_game_to_disk.emit(editor.game)
+	save_game_to_disk.emit(getGame())
 
 func transitionToPlay(mapToBuild: EditorGame) -> void:
 	match state:
@@ -94,6 +105,8 @@ func transitionToEdit() -> void:
 		States.EXITING:
 			toggleWarningItems(false)
 			toggleBody(true)
+			# wee  assumption that this was the focus before trying to leave
+			exitButton.grab_focus()
 	
 	toggleEditItems(true)
 	state = States.EDITING
@@ -162,3 +175,8 @@ func _on_confirm_exit_pressed() -> void:
 
 func _on_cancel_exit_pressed() -> void:
 	exitExiting()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("ui_save"):
+		trySaveGameToDisk()

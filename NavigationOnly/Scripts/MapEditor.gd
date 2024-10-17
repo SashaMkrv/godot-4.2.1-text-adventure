@@ -8,8 +8,6 @@ var itemMapEditor: ItemMapEditor = %ItemMapEditor
 @onready
 var startingRoomInput: LineEdit = %StartingRoomInput
 
-var _currentItem: Item
-
 var _currentGame: EditorGame = EditorGame.NewEmptyGame()
 
 
@@ -18,6 +16,8 @@ func getGame() -> EditorGame:
 	return _currentGame
 
 func setGame(game: EditorGame) -> void:
+	if game != _currentGame:
+		setItemEditorItem(null)
 	_currentGame = game
 
 
@@ -27,9 +27,10 @@ func _ready() -> void:
 
 
 func _item_selected(item: Item) -> void:
-	_currentItem = item
-	itemEditor.item = item
+	setItemEditorItem(item)
 
+func setItemEditorItem(item: Item) -> void:
+	itemEditor.item = item
 
 func updateUiForCurrentGame() -> void:
 	if not is_node_ready():

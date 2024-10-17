@@ -134,5 +134,5 @@ text = "Cancel"
 [connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
 [connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ConfirmExit" to="." method="_on_confirm_save_pressed"]
+[connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ConfirmExit" to="." method="_on_confirm_exit_pressed"]
 [connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelExit" to="." method="_on_cancel_exit_pressed"]
