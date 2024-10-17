@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jfcxj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Body" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,57 +21,118 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Body"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
-[node name="HeaderContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer"]
+[node name="HeaderContainer" type="PanelContainer" parent="Body/MarginContainer"]
 editor_description = "this might make more sense as separate headers, one for editing, one for playing. Less state to manage."
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/HeaderContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Body/MarginContainer/HeaderContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Body/MarginContainer/HeaderContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="StateLabel" type="Label" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="StateLabel" type="Label" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Editing"
 
-[node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Play Map"
 
-[node name="EditButton" type="Button" parent="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+[node name="EditButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Edit Map"
 
-[node name="BodyMarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="SaveButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save Map"
+
+[node name="ExitButton" type="Button" parent="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit Editor"
+
+[node name="BodyMarginContainer" type="MarginContainer" parent="Body"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MapEditor" parent="VBoxContainer/BodyMarginContainer" instance=ExtResource("2_2p2rb")]
+[node name="MapEditor" parent="Body/BodyMarginContainer" instance=ExtResource("2_2p2rb")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MapPlayer" parent="VBoxContainer/BodyMarginContainer" instance=ExtResource("3_jfl0p")]
+[node name="MapPlayer" parent="Body/BodyMarginContainer" instance=ExtResource("3_jfl0p")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
+[node name="ExitWarning" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ExitWarning"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ExitWarning/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExitWarning/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="WarningHeader" type="Label" parent="ExitWarning/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exiting Editor"
+uppercase = true
+
+[node name="WarningBody" type="Label" parent="ExitWarning/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Are you sure you want to exit?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ExitWarning/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ConfirmExit" type="Button" parent="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="CancelExit" type="Button" parent="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/EditButton" to="." method="_on_edit_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Body/MarginContainer/HeaderContainer/MarginContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/ConfirmExit" to="." method="_on_confirm_save_pressed"]
+[connection signal="pressed" from="ExitWarning/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelExit" to="." method="_on_cancel_exit_pressed"]

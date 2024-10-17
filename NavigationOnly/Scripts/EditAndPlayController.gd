@@ -1,18 +1,37 @@
-extends Node
+extends Control
+class_name EditAndPlayController
+
+signal save_game_to_disk(editorGame: EditorGame)
+signal exit_editor()
+
+# TODO store whether changes have occured after save
+# so your exit warning is more accurate
+# or you can show some kind of symbol.
 
 @onready
 var editor: MapEditor = %MapEditor
 @onready
 var player: MapPlayer = %MapPlayer
+@onready
+var exitWarning: Control = %ExitWarning
+@onready
+var cancelExitButton: Button = %CancelExit
+@onready
+var body: Control = $Body
 
 @onready
 var editButton: Button = %EditButton
 @onready
 var playButton: Button = %PlayButton
+@onready
+var saveButton: Button = %SaveButton
+@onready
+var exitButton: Button = %ExitButton
 
 enum States {
 	PLAYING,
-	EDITING
+	EDITING,
+	EXITING
 }
 
 var state:= States.EDITING
@@ -38,13 +57,23 @@ func playMap() -> void:
 func editMap() -> void:
 	transitionToEdit()
 
+func exitEditor() -> void:
+	transitionToExiting()
 
+func confirmExitEditor() -> void:
+	exit_editor.emit()
+
+func trySaveGameToDisk() -> void:
+	save_game_to_disk.emit(editor.game)
 
 func transitionToPlay(mapToBuild: EditorGame) -> void:
 	match state:
 		States.EDITING:
 			toggleEditItems(false)
 		States.PLAYING:
+			return
+		States.EXITING:
+			# this is not valid
 			return
 	
 	togglePlayItems(true)
@@ -62,11 +91,30 @@ func transitionToEdit() -> void:
 			return
 		States.PLAYING:
 			togglePlayItems(false)
+		States.EXITING:
+			toggleWarningItems(false)
+			toggleBody(true)
 	
 	toggleEditItems(true)
 	state = States.EDITING
 
+func transitionToExiting() -> void:
+	match state:
+		States.EXITING:
+			return
+		States.PLAYING:
+			# no
+			return
+		States.EDITING:
+			# this is covered by everything being hidden
+			pass
+	toggleBody(false)
+	toggleWarningItems(true)
+	cancelExitButton.grab_focus()
+	state = States.EXITING
 
+func exitExiting() -> void:
+	transitionToEdit()
 
 func disableAndHide(control: Control) -> void:
 	control.process_mode = Node.PROCESS_MODE_DISABLED
@@ -84,11 +132,16 @@ func toggleItems(nodes: Array[Control], visible: bool) -> void:
 			disableAndHide(node)
 
 func toggleEditItems(visible: bool) -> void:
-	toggleItems([playButton, editor], visible)
+	toggleItems([playButton, saveButton, exitButton, editor], visible)
 
 func togglePlayItems(visible: bool) -> void:
 	toggleItems([editButton, player], visible)
 
+func toggleWarningItems(visible: bool) -> void:
+	toggleItems([exitWarning], visible)
+
+func toggleBody(visible: bool) -> void:
+	toggleItems([body], visible)
 
 
 func _on_play_button_pressed() -> void:
@@ -96,3 +149,16 @@ func _on_play_button_pressed() -> void:
 
 func _on_edit_button_pressed() -> void:
 	editMap()
+
+func _on_exit_button_pressed() -> void:
+	exitEditor()
+
+func _on_save_button_pressed() -> void:
+	trySaveGameToDisk()
+
+
+func _on_confirm_exit_pressed() -> void:
+	confirmExitEditor()
+
+func _on_cancel_exit_pressed() -> void:
+	exitExiting()
