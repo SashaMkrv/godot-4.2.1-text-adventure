@@ -1,4 +1,5 @@
 extends Node
+class_name MapBrowser
 
 signal opening_map(editorGame: EditorGame)
 
