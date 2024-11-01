@@ -41,8 +41,18 @@ func updateMapList() -> void:
 	mapList.games = games
 
 func updateMapInfo() -> void:
-	mapInfoContainer.item = currentSelectedItem
 	mapInfoContainer.visible = currentSelectedItem != null
+	if currentSelectedItem == null:
+		mapInfoContainer.item = currentSelectedItem
+		return
+	
+	var reader := MapFileLoader.new("user://maps".path_join(currentSelectedItem.filename))
+	var game := reader.read()
+	var mapItemCopy := currentSelectedItem.duplicate()
+	mapItemCopy.mapName = game.mapName
+	mapItemCopy.mapDescription = game.mapDescription
+	
+	mapInfoContainer.item = mapItemCopy
 
 func updateSelectedMap(mapListItemInfo: MapListItemInfo) -> void:
 	currentSelectedItem = mapListItemInfo
