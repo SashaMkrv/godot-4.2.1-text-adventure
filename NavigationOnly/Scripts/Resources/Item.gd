@@ -54,7 +54,7 @@ static func _to_dict(item: Item) -> Dictionary:
 static func _from_dict(dictionary: Dictionary) -> Item:
 	var newItem = Item.new()
 	
-	newItem.uniqueName = dictionary.get(DISPLAY_NAME_KEY, "")
+	newItem.uniqueName = dictionary.get(UNIQUE_NAME_KEY, "")
 	newItem.displayName = dictionary.get(DISPLAY_NAME_KEY, "")
 	newItem.description = dictionary.get(DESCRIPTION_KEY, "")
 	newItem.flavorColor = Color.from_string(dictionary.get_or_add(COLOR_KEY, "000000"), Color.BLACK)
