@@ -46,9 +46,8 @@ func readAndOpenMap(mapListItemInfo: MapListItemInfo) -> void:
 		openMap(EditorGame.NewEmptyGame(), SaveContext.new("new-map-data.mn8a"))
 		return
 	
-	var path = "user://".path_join("maps").path_join(mapListItemInfo.filename)
-	var fileContent = FileAccess.get_file_as_string(path)
-	var editorGame = EditorGame._from_dict(JSON.parse_string(fileContent))
+	var reader = MapFileLoader.new("user://".path_join("maps").path_join(mapListItemInfo.filename))
+	var editorGame = reader.read()
 	
 	var saveContext = SaveContext.new(mapListItemInfo.filename)
 	openMap(editorGame, saveContext)
