@@ -69,6 +69,16 @@ func _replaceGrid() -> void:
 			item = mapItemScene.instantiate()
 			item.coordinates = Vector2i(x, y)
 			var _err := item.mapCoordinatesClicked.connect(_map_item_clicked)
+			var placedItem := _getPlacedItemAt(item.coordinates)
+			if placedItem:
+				item.item = placedItem
 			_grid.add_child(item)
 
 # TODO add dict for accessing items by name (way more fiddly handling)
+
+func _getPlacedItemAt(coordinates: Vector2i) -> Item:
+	if not _visibleItems:
+		return null
+	if not _visibleItems.isSetAt(coordinates):
+		return null
+	return _visibleItems.getAt(coordinates)
