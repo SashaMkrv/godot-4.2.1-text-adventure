@@ -3,7 +3,7 @@ class_name EditAndPlayController
 
 # there is probably no reason for this to be a signal
 # and be leaving this hallowed hall of editing
-signal save_game_to_disk(editorGame: EditorGame)
+signal save_game_to_disk(editorGame: EditorGame, saveContext: SaveContext)
 signal exit_editor()
 
 # TODO store whether changes have occured after save
@@ -38,11 +38,16 @@ enum States {
 
 var state:= States.EDITING
 
-
+var _saveContext: SaveContext
 
 func getGame() -> EditorGame:
 	return editor.getGame()
 
+func setSaveContext(saveContext: SaveContext) -> void:
+	_saveContext = saveContext
+
+func getSaveContext() -> SaveContext:
+	return _saveContext
 
 func setGame(game: EditorGame) -> void:
 	reset()
@@ -75,7 +80,7 @@ func confirmExitEditor() -> void:
 	exit_editor.emit()
 
 func trySaveGameToDisk() -> void:
-	save_game_to_disk.emit(getGame())
+	save_game_to_disk.emit(getGame(), getSaveContext())
 
 func transitionToPlay(mapToBuild: EditorGame) -> void:
 	match state:

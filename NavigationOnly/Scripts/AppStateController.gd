@@ -10,16 +10,28 @@ var mapBrowser: MapBrowser = $MapBrowser
 var mapEditor: EditAndPlayController = $EditAndPlayMaps
 
 @export
-var games: Array[EditorGame] = [
-	EditorGame.NewEmptyGame()
-]
+var games: Array[MapListItemInfo] = []
+
+var mapSaver: MapSaver = MapSaver.new()
+var directoryReader: DirectoryReader = DirectoryReader.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updateMapBrowser()
 
 func updateMapBrowser() -> void:
-	mapBrowser.games = games
+	var items = getItemsFromDir()
+	mapBrowser.games = items
+
+func getItemsFromDir() -> Array[MapListItemInfo]:
+	var filenames = directoryReader.tryReadOrCreateDirectory()
+	print(filenames)
+	# I would like to map this, but maps return untyped arrays regardless of your lambda
+	var items: Array[MapListItemInfo] = []
+	for filename in filenames:
+		items.append(MapListItemInfo.new(filename))
+	return items
 
 func backToBrowser() -> void:
 	toggleOffControl(mapEditor)
@@ -27,9 +39,24 @@ func backToBrowser() -> void:
 	updateMapBrowser()
 	# TODO update map browser list
 	# or do that on save?
+
+
+func readAndOpenMap(mapListItemInfo: MapListItemInfo) -> void:
+	if mapListItemInfo.newFile:
+		openMap(EditorGame.NewEmptyGame(), SaveContext.new("new-map-data.mn8a"))
+		return
+	
+	var path = "user://".path_join("maps").path_join(mapListItemInfo.filename)
+	var fileContent = FileAccess.get_file_as_string(path)
+	var editorGame = EditorGame._from_dict(JSON.parse_string(fileContent))
+	
+	var saveContext = SaveContext.new(mapListItemInfo.filename)
+	openMap(editorGame, saveContext)
+	
+	
 	
 
-func openMap(editorGame: EditorGame) -> void:
+func openMap(editorGame: EditorGame, saveContext: SaveContext) -> void:
 	toggleOffControl(mapBrowser)
 	toggleOnControl(mapEditor)
 	
@@ -37,29 +64,32 @@ func openMap(editorGame: EditorGame) -> void:
 		print_debug("somehow trying to open null game")
 	
 	mapEditor.setGame(editorGame)
+	mapEditor.setSaveContext(saveContext)
 	# this should probably be a duplicate so we don't go editing the info in the map browser too
 
 
-func loadGames() -> void:
-	pass
+func reloadMapList() -> void:
+	var list = directoryReader.readDirectory().map(
+		func (file): return MapListItemInfo.new(file)
+	)
+	
 
 # I need to GET saved maps as well.
 
 # make new script for this one. I'd prefer a saver w logic outside of this file
-func saveGameToDisk(editorGame: EditorGame) -> void:
+func saveGameToDisk(editorGame: EditorGame, saveContext: SaveContext) -> void:
 	if editorGame == null:
 		print_debug("somehow trying to save null game to disk")
 	# either new and empty, or update of current one
 	# check for file id in the save directory, either make new file or rewrite.
-	print(editorGame.fileId)
+	mapSaver.save(editorGame, saveContext)
 	pass
 
-func _on_map_browser_opening_map(editorGame: EditorGame) -> void:
-	openMap(editorGame)
+func _on_map_browser_opening_map(mapListItemInfo: MapListItemInfo) -> void:
+	readAndOpenMap(mapListItemInfo)
 
-
-func _on_edit_and_play_maps_save_game_to_disk(editorGame: EditorGame) -> void:
-	saveGameToDisk(editorGame)
+func _on_edit_and_play_maps_save_game_to_disk(editorGame: EditorGame, saveContext: SaveContext) -> void:
+	saveGameToDisk(editorGame, saveContext)
 
 func _on_edit_and_play_maps_exit_editor() -> void:
 	backToBrowser()

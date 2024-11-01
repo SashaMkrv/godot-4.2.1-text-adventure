@@ -4,7 +4,7 @@ class_name MapListUpdater
 signal game_selected(editorGame: EditorGame)
 
 @export
-var games: Array[EditorGame] = []:
+var games: Array[MapListItemInfo] = []:
 	set(value):
 		games = value
 		# right, I need some way to actually handle the list changing.... Or do I.....
@@ -25,21 +25,21 @@ func _process(delta: float) -> void:
 	pass
 
 
-func game_selected_in_list(editorGame: EditorGame) -> void:
-	game_selected.emit(editorGame)
+func game_selected_in_list(mapListItemInfo: MapListItemInfo) -> void:
+	game_selected.emit(mapListItemInfo)
 
 func removeAllChildren() -> void:
 	for child in get_children():
 		if child is MapListItem:
-			child.editorGameSelectedInMapList.disconnect(game_selected_in_list)
+			child.mapSelectedInMapList.disconnect(game_selected_in_list)
 			child.queue_free()
 
 func addAllChildren() -> void:
 	var newNode: MapListItem
 	for game in games:
 		newNode = listItemScene.instantiate()
-		newNode.editorGame = game
-		newNode.editorGameSelectedInMapList.connect(game_selected_in_list)
+		newNode.mapListItemInfo = game
+		newNode.mapSelectedInMapList.connect(game_selected_in_list)
 		add_child(newNode)
 
 

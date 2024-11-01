@@ -2,24 +2,27 @@
 extends Node
 class_name MapListItem
 
-signal editorGameSelectedInMapList(editorGame: EditorGame)
+signal mapSelectedInMapList(mapListItemInfo: MapListItemInfo)
 
 const NAME_PLACEHOLDER_TEXT = "Map Name"
 const DESCRIPTION_PLACEHOLDER_TEXT = "Map description. This can be pretty long."
+const FILENAME_PLACEHOLDER_TEXT = "an-example-filename.dat"
 
 # should these be map list item DTOs?
 @export
-var editorGame: EditorGame:
+var mapListItemInfo: MapListItemInfo:
 	set(value):
-		if editorGame == value:
+		if mapListItemInfo == value:
 			return
-		editorGame = value
+		mapListItemInfo = value
 		updateItemInfo()
 
 @onready
 var nameLabel: Label = %MapItemName
 @onready
 var descriptionLabel: Label = %MapItemDescription
+@onready
+var filenameLabel: Label = %MapItemFilename
 @onready
 var button: Button = %Button
 
@@ -31,16 +34,18 @@ func _ready() -> void:
 func updateItemInfo() -> void:
 	if not is_node_ready():
 		return
-	if editorGame == null:
+	if mapListItemInfo == null:
 		nameLabel.text = NAME_PLACEHOLDER_TEXT
 		descriptionLabel.text = DESCRIPTION_PLACEHOLDER_TEXT
+		filenameLabel.text = FILENAME_PLACEHOLDER_TEXT
 		return
-	nameLabel.text = editorGame.mapName
-	descriptionLabel.text = editorGame.mapDescription
+	nameLabel.text = mapListItemInfo.mapName
+	descriptionLabel.text = mapListItemInfo.mapDescription
+	filenameLabel.text = mapListItemInfo.filename
 
 
 func _on_button_pressed() -> void:
-	editorGameSelectedInMapList.emit(editorGame)
+	mapSelectedInMapList.emit(mapListItemInfo)
 
 func tryGrabFocus() -> void:
 	button.grab_focus()

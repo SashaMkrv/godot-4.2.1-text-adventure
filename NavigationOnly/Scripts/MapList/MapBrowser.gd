@@ -1,10 +1,10 @@
 extends Control
 class_name MapBrowser
 
-signal opening_map(editorGame: EditorGame)
+signal opening_map(mapListItemInfo: MapListItemInfo)
 
 @export
-var games: Array[EditorGame] = []:
+var games: Array[MapListItemInfo] = []:
 	set(value):
 		if games == value:
 			return
@@ -12,15 +12,18 @@ var games: Array[EditorGame] = []:
 		updateUi()
 
 @onready
-var mapInfoContainer: Control = %MapInfoContainer
+var mapInfoContainer: MapInfoView = %MapInfoContainer
 @onready
-var mapList: MapListUpdater = %MapList
-
-var currentSelectedGame: EditorGame:
+var mapList: MapListUpdater = %MapList:
 	set(value):
-		if currentSelectedGame == value:
+		mapList = value
+		updateUi()
+
+var currentSelectedItem: MapListItemInfo:
+	set(value):
+		if currentSelectedItem == value:
 			return
-		currentSelectedGame = value
+		currentSelectedItem = value
 		updateMapInfo()
 
 # Called when the node enters the scene tree for the first time.
@@ -38,22 +41,22 @@ func updateMapList() -> void:
 	mapList.games = games
 
 func updateMapInfo() -> void:
-	mapInfoContainer.game = currentSelectedGame
-	mapInfoContainer.visible = currentSelectedGame != null
+	mapInfoContainer.item = currentSelectedItem
+	mapInfoContainer.visible = currentSelectedItem != null
 
-func updateSelectedMap(game: EditorGame) -> void:
-	currentSelectedGame = game
+func updateSelectedMap(mapListItemInfo: MapListItemInfo) -> void:
+	currentSelectedItem = mapListItemInfo
 
-func openMap(game: EditorGame) -> void:
-	opening_map.emit(game)
+func openMap(item: MapListItemInfo) -> void:
+	opening_map.emit(item)
 
 func _on_make_new_map_button_pressed() -> void:
-	openMap(EditorGame.NewEmptyGame())
+	openMap(MapListItemInfo.BrandNewFile())
 
 
-func _on_map_list_game_selected(editorGame: EditorGame) -> void:
-	updateSelectedMap(editorGame)
+func _on_map_list_game_selected(mapListItemInfo: MapListItemInfo) -> void:
+	updateSelectedMap(mapListItemInfo)
 
 
 func _on_map_info_container_open_map_clicked() -> void:
-	openMap(currentSelectedGame)
+	openMap(currentSelectedItem)
