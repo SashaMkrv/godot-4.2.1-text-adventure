@@ -25,15 +25,21 @@ mouse_filter = 2
 
 [node name="MapItemName" type="Label" parent="MapListItem/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Map Name!"
 uppercase = true
 
 [node name="MapItemDescription" type="Label" parent="MapListItem/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Map Description! Lengthy and verbose, maybe! Or short and pithy. Functionally endless options. Not exactly infinite, the limitations of memory and all that, but approaching infinite!"
 clip_text = true
 text_overrun_behavior = 3
+
+[node name="MapItemFilename" type="Label" parent="MapListItem/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
