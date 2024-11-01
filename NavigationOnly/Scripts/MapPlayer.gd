@@ -47,6 +47,10 @@ var _commandParser:= CommandParser.new()
 func _ready() -> void:
 	resetForCurrentGameInfo()
 
+func reset() -> void:
+	gameData = null
+	gameState = null
+
 func resetForCurrentGameInfo() -> void:
 	if gameData == null:
 		resetUiForEmpty()

@@ -41,3 +41,36 @@ func getOrCreateEmptyItemAt(coordinates: Vector2i) -> Item:
 	var newItem := Item.EmptyItem()
 	setAt(coordinates, newItem)
 	return getAt(coordinates)
+
+
+static func _to_dict(items: PlacedItems) -> Dictionary:
+	var dict = {}
+	
+	for key in items._dictionary.keys():
+		dict[_coordinates_to_string(key)] = Item._to_dict(items._dictionary[key])
+	
+	return dict
+
+static func _from_string_keyed_dict(rawDict: Dictionary) -> PlacedItems:
+	var dict = {}
+	
+	for key in rawDict.keys():
+		var vecKey = _string_to_coordinates(key)
+		var item = Item._from_dict(rawDict[key])
+		
+		dict[vecKey] = item
+		
+	return PlacedItems.new(dict)
+
+static func _coordinates_to_string(coords: Vector2i) -> String:
+	return "%d,%d" % [coords.x, coords.y]
+
+static func _string_to_coordinates(string: String) -> Vector2i:
+	var badCoordinateX = 100
+	var badCoordinateY = 100
+	var splitString = string.split(",")
+	if splitString.size() < 2:
+		printerr("problem with coordinates string, not enough values")
+		badCoordinateX += 1
+		return Vector2i(badCoordinateX, badCoordinateY)
+	return Vector2i(int(splitString[0]), int(splitString[1]))
