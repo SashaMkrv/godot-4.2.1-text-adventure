@@ -13,6 +13,8 @@ var item: MapListItemInfo:
 @onready
 var nameLabel: Label = %MapNameLabel
 @onready
+var filenameLabel: Label = %FilenameLabel
+@onready
 var descriptionLabel: Label = %MapDescriptionLabel
 
 #@onready
@@ -28,9 +30,11 @@ func updateUi() -> void:
 	if item == null:
 		nameLabel.text = ""
 		descriptionLabel.text = ""
+		filenameLabel.text = ""
 	else:
 		nameLabel.text = item.mapName
 		descriptionLabel.text = item.mapDescription
+		filenameLabel.text = item.filename
 
 func _on_open_map_button_pressed() -> void:
 	open_map_clicked.emit()

@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd2ge0v8oe2sq"]
+[gd_scene load_steps=6 format=3 uid="uid://bd2ge0v8oe2sq"]
 
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapList/MapListUpdater.gd" id="1_ee0qs"]
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapList/MapBrowser.gd" id="1_iwvjo"]
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapList/MapInfoView.gd" id="3_3r0py"]
+
+[sub_resource type="SystemFont" id="SystemFont_hnv7e"]
+font_names = PackedStringArray("Sans-Serif")
+font_weight = 700
 
 [sub_resource type="SystemFont" id="SystemFont_b25du"]
 font_names = PackedStringArray("Sans-Serif")
@@ -140,6 +144,15 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Open Map"
+
+[node name="FilenameLabel" type="Label" parent="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = SubResource("SystemFont_hnv7e")
+text = "File Name"
+clip_text = true
+text_overrun_behavior = 3
 
 [node name="MapDescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
