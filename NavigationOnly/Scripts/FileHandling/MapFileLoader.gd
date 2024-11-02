@@ -9,4 +9,5 @@ func _init(filePath: String) -> void:
 
 func read() -> EditorGame:
 	var fileContent = FileAccess.get_file_as_string(fullFilePath)
-	return EditorGame._from_dict(JSON.parse_string(fileContent))
+	var parser = MapParser.new()
+	return parser.parse(fileContent)
