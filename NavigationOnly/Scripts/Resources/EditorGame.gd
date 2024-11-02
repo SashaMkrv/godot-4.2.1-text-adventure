@@ -35,10 +35,10 @@ static func _to_dict(game: EditorGame) -> Dictionary:
 
 static func _from_dict(dictionary: Dictionary) -> EditorGame:
 	var newGame = EditorGame.NewEmptyGame()
-	newGame.startingRoomIdentifier = dictionary[STARTING_ROOM_KEY]
-	newGame.mapName = dictionary[MAP_NAME_KEY]
-	newGame.mapDescription = dictionary[MAP_DESCRIPTION_KEY]
-	var placedItems = PlacedItems._from_string_keyed_dict(dictionary[PLACED_ITEMS_KEY])
+	newGame.startingRoomIdentifier = dictionary.get(STARTING_ROOM_KEY, "")
+	newGame.mapName = dictionary.get(MAP_NAME_KEY, "")
+	newGame.mapDescription = dictionary.get(MAP_DESCRIPTION_KEY, "")
+	var placedItems = PlacedItems._from_string_keyed_dict(dictionary.get(PLACED_ITEMS_KEY, ""))
 	newGame.placedItems = placedItems
 	return newGame
 	
