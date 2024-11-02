@@ -12,7 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nqfgg")
-games = null
 
 [node name="MapBrowser" parent="." instance=ExtResource("2_hlsaf")]
 layout_mode = 1
@@ -21,6 +20,7 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
+[connection signal="creating_file" from="MapBrowser" to="." method="_on_map_browser_creating_file"]
 [connection signal="opening_map" from="MapBrowser" to="." method="_on_map_browser_opening_map"]
 [connection signal="exit_editor" from="EditAndPlayMaps" to="." method="_on_edit_and_play_maps_exit_editor"]
 [connection signal="save_game_to_disk" from="EditAndPlayMaps" to="." method="_on_edit_and_play_maps_save_game_to_disk"]
