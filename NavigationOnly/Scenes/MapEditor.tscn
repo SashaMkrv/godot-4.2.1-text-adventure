@@ -282,7 +282,8 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Map Description: "
 
-[node name="TextEdit" type="TextEdit" parent="Editor/TabContainer/Map/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="MapDescriptionInput" type="TextEdit" parent="Editor/TabContainer/Map/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Description of your map."
