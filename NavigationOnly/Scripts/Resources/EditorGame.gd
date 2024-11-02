@@ -6,9 +6,9 @@ class_name EditorGame
 @export
 var startingRoomIdentifier: String = ""
 @export
-var mapName: String = "Map"
+var mapName: String = ""
 @export
-var mapDescription: String = "Description"
+var mapDescription: String = ""
 # My kingdom for a typed dictionary.
 #@export
 #var gridSize: Vector2i = Vector2i(30, 30)
