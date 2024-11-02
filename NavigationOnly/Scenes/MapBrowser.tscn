@@ -1,16 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://bd2ge0v8oe2sq"]
+[gd_scene load_steps=7 format=3 uid="uid://bd2ge0v8oe2sq"]
 
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapList/MapListUpdater.gd" id="1_ee0qs"]
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapList/MapBrowser.gd" id="1_iwvjo"]
 [ext_resource type="Script" path="res://NavigationOnly/Scripts/MapList/MapInfoView.gd" id="3_3r0py"]
+[ext_resource type="PackedScene" uid="uid://e213f7bfvlgd" path="res://NavigationOnly/Scenes/CreateNewMapView.tscn" id="4_e7hp1"]
 
 [sub_resource type="SystemFont" id="SystemFont_hnv7e"]
 font_names = PackedStringArray("Sans-Serif")
 font_weight = 700
+subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_b25du"]
 font_names = PackedStringArray("Sans-Serif")
 font_weight = 300
+subpixel_positioning = 0
 
 [node name="MapBrowser" type="Control"]
 layout_mode = 3
@@ -172,7 +175,14 @@ layout_mode = 2
 layout_mode = 2
 text = "New Map"
 
+[node name="NewMapPopup" type="Popup" parent="."]
+title = "New Map"
+initial_position = 2
+
+[node name="CreateNewMapView" parent="NewMapPopup" instance=ExtResource("4_e7hp1")]
+
 [connection signal="game_selected" from="MarginContainer/VBoxContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/MapList" to="." method="_on_map_list_game_selected"]
 [connection signal="open_map_clicked" from="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer" to="." method="_on_map_info_container_open_map_clicked"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenMapButton" to="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer" method="_on_open_map_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MakeNewMapButton" to="." method="_on_make_new_map_button_pressed"]
+[connection signal="newMapRequested" from="NewMapPopup/CreateNewMapView" to="." method="_on_create_new_map_view_new_map_requested"]
