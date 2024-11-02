@@ -299,3 +299,4 @@ wrap_mode = 1
 [connection signal="text_changed" from="Editor/TabContainer/Items/ItemEditor/Scenery/MarginContainer/SceneryInput" to="Editor/TabContainer/Items/ItemEditor" method="_on_scenery_input_text_changed"]
 [connection signal="text_changed" from="Editor/TabContainer/Items/ItemEditor/Aliases/MarginContainer/AliasInput" to="Editor/TabContainer/Items/ItemEditor" method="_on_alias_input_text_changed"]
 [connection signal="timeout" from="Editor/TabContainer/Items/ItemEditor/Timer" to="Editor/TabContainer/Items/ItemEditor" method="_on_timer_timeout"]
+[connection signal="text_changed" from="Editor/TabContainer/Map/MarginContainer/VBoxContainer/HBoxContainer/MapNameInput" to="." method="_on_map_name_input_text_changed"]
