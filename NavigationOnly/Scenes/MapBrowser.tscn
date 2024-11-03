@@ -148,6 +148,12 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Open Map"
 
+[node name="ExportMapButton" type="Button" parent="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Export Map"
+
 [node name="FilenameLabel" type="Label" parent="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -181,8 +187,31 @@ initial_position = 2
 
 [node name="CreateNewMapView" parent="NewMapPopup" instance=ExtResource("4_e7hp1")]
 
+[node name="ExportPopup" type="Popup" parent="."]
+unique_name_in_owner = true
+size = Vector2i(320, 320)
+
+[node name="PanelContainer" type="PanelContainer" parent="ExportPopup"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ExportPopup/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ExportContent" type="TextEdit" parent="ExportPopup/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+editable = false
+wrap_mode = 1
+
 [connection signal="game_selected" from="MarginContainer/VBoxContainer/VSplitContainer/MapListContainer/MarginContainer/ScrollContainer/MapList" to="." method="_on_map_list_game_selected"]
 [connection signal="open_map_clicked" from="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer" to="." method="_on_map_info_container_open_map_clicked"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer/HBoxContainer/OpenMapButton" to="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer" method="_on_open_map_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VSplitContainer/MapInfoContainer/MarginContainer/VBoxContainer/HBoxContainer/ExportMapButton" to="." method="_on_export_map_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MakeNewMapButton" to="." method="_on_make_new_map_button_pressed"]
 [connection signal="newMapRequested" from="NewMapPopup/CreateNewMapView" to="." method="_on_create_new_map_view_new_map_requested"]
