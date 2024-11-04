@@ -36,8 +36,8 @@ When you first open a map in the editor, you will be in the Map tab. This has th
 
 The item tab is where you edit all the items in your map, as well identify which room will the player starts in.
 
-#### What? Is this is grid?
-Uh. Yes. That's where you browse and create your map items. Sorry. Or not sorry? This was not the focus of the prototype, but I will admit it was maybe not the best choice. We can pretend it is a marvelous, very functional map, showing all of your game and the connections between all items. It is not this. It is a 2x2 grid of coloured, textless buttons. If you click one, if there's an item in that grid space, it'll open it in the item editor. If there isn't an item there, it'll make a new one, and open it in the item editor. So you can edit it. If you mouse over a defined item in the grid, it will show you its identifier string in a tooltip.
+#### What. Why is there a grid here?
+Uh. Yeah, so. That's where you browse and create your map items. Sorry. Or not sorry? This was not the focus of the prototype, but I will admit it was maybe not the best choice. We can pretend it is a marvelous, very functional map, showing all of your game and the connections between all items. It is not this. It is a 2x2 grid of coloured, textless buttons. If you click one, if there's an item in that grid space, it'll open it in the item editor. If there isn't an item there, it'll make a new one, and open it in the item editor. So you can edit it. If you mouse over a defined item in the grid, it will show you its identifier string in a tooltip.
 
 If you change the cell color of an item, the corresponding button in the grid will change to this color as well.
 
