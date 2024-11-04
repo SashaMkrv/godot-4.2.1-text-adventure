@@ -50,7 +50,7 @@ The rooms are items. The items are items. If you have an apple, you an examine i
 Each item has an identifier (hopefully unique), used in scripts (such as for room connections or for scenery), a display name, a description, and a set of `scripts` for describing connections, scenery, and aliasing player commands (e.g. `TALK JULIE` can become `GO JULIE`, and in connections, the direction `JULIE` leads to a `talk_julie_1` item. Now you have a very, very rudimentary dialogue system.)
 
 ### The Syntax
-There is very little in the way of syntax. Any 'scripts' you might write are just lists of keys and values, separated by `:`s, each pair separated by newlines.
+There is very little in the way of syntax. Any 'scripts' you might write are just key-value pairs joined by a `:`. New key-value pair? New line.
 
 #### Connections
 
