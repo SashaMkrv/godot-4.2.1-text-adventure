@@ -17,9 +17,6 @@ var filenameLabel: Label = %FilenameLabel
 @onready
 var descriptionLabel: Label = %MapDescriptionLabel
 
-#@onready
-#var openMapButton: Button = %OpenMapButton
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updateUi()

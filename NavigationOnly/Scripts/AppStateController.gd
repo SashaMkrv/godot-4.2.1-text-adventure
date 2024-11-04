@@ -51,9 +51,11 @@ func readAndOpenMap(mapListItemInfo: MapListItemInfo) -> void:
 	
 	var saveContext = SaveContext.new(mapListItemInfo.filename)
 	openMap(editorGame, saveContext)
-	
-	
-	
+
+
+func openMapWithFilenameForSaving(filename: String, editorGame: EditorGame) -> void:
+	var saveContext = SaveContext.new(filename)
+	openMap(editorGame, saveContext)
 
 func openMap(editorGame: EditorGame, saveContext: SaveContext) -> void:
 	toggleOffControl(mapBrowser)
@@ -87,12 +89,14 @@ func saveGameToDisk(editorGame: EditorGame, saveContext: SaveContext) -> void:
 func _on_map_browser_opening_map(mapListItemInfo: MapListItemInfo) -> void:
 	readAndOpenMap(mapListItemInfo)
 
+func _on_map_browser_creating_file(filename: String, editorGame: EditorGame) -> void:
+	openMapWithFilenameForSaving(filename, editorGame)
+
 func _on_edit_and_play_maps_save_game_to_disk(editorGame: EditorGame, saveContext: SaveContext) -> void:
 	saveGameToDisk(editorGame, saveContext)
 
 func _on_edit_and_play_maps_exit_editor() -> void:
 	backToBrowser()
-
 
 
 func toggleOffControl(control: Control) -> void:
