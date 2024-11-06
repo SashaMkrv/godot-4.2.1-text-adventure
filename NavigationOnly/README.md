@@ -1,6 +1,7 @@
-# (Almost) No State Prototype
+# (Almost) Stateless Text-Adventure Prototype
 
-What it says on the tin. This prototype comes with text-adventures that are
+What it says on the tin. This prototype comes with an editor and player for 
+text-adventures that are
 essentially stateless, beyond keeping track of which room the player is in.
 
 It's a tiny engine for making tiny text adventures and playing them. You can 
@@ -13,10 +14,11 @@ The map browser looks in the `user://maps` directory (or makes a
 `user://maps` directory if none is found) for files with the
 `.mn8a` extension and lists the found files. Selecting a file will open its name
 and description in a map info module at the bottom of the screen. From there you
-can open the map (or "export" it).
+can open the map ([or "export" it](#not-quite-exporting)).
 
-You can make new maps from this screen, as well as "import" maps by copy-pasting
-in some JSON, or "export" maps with some copy-pasting of JSON. These are here to
+You can make new maps from this screen, as well as ["import" maps](#importing) by 
+copy-pasting
+in some JSON. These are here to
 shunt maps in and out of your browser's local DBs on web builds.
 
 Godot's
@@ -31,6 +33,26 @@ follows for Windows, Mac, and GNU/Linux:
 (Taken from
 the [File Paths in Godot](https://docs.godotengine.org/en/4.3/tutorials/io/data_paths.html)
 doc page.)
+
+### Not-Quite Exporting
+After selecting a map in the map browser, clicking the `Export Map` button 
+will open a popup with a JSON definition of the game map (this is actually just 
+the 
+contents of the saved file). You can copy and paste this to share the map.
+
+### Importing
+When trying to create a new map from the map browser, the New Map Popup 
+contains a map data field into which you can paste the definition of a map. 
+If your filename is usable, and the definition you provided is correctly 
+formatted 
+JSON,
+it will 
+try its best to open the 
+map in the 
+editor.
+
+**Note**: The map is not saved to the specified filename at this 
+point. You will need to manually save to write to disk.
 
 ### The .mn8a file extension
 
@@ -107,15 +129,11 @@ room connections or for scenery)
 play screen when the item is the current room)
 - a description (displayed 
 when changing rooms, or when examining an item as scenery)
-- and a set of `scripts` for describing connections (e.g. `NORTH: 
-north_hallway`), scenery 
+- and a set of `scripts` for describing [connections](#connections) (e.g. `NORTH: 
+north_hallway`), [scenery](#scenery) 
 (e.g. `TREES: trees_scenery`), and 
-aliasing player 
-commands (e.g. `GO NORTH` can become `EXAMINE BLOCKED_PATH`, and if you have 
-  `BLOCKED_PATH: block_path_description` or similar defined in the scenery 
-  script, you can provide the player 
-  with info about a blocked path via the description on the 
-  `block_path_description` item. )
+[aliasing player 
+commands](#aliases) (e.g. `TALK JULIE: GO JULIE_ITEM`)
 
 ### Syntax and Scripts
 
@@ -192,17 +210,26 @@ TALK STEVE: EXAMINE STEVE
 ```
 
 Now the `TALK JULIE` command will turn into `GO JULIE` and try to use follow the
-`JULIE` direction which is hopefully defined in this item's connections script.
-Maybe Steve is more terse and does justify a full dialogue tree or room change,
+`JULIE` direction (which is hopefully defined in this item's connections 
+script, maybe with a `JULIE: julie_talk_1`).
+Maybe Steve is more terse and doesn't justify a full dialogue tree or room 
+change,
 and we can get away with just displaying some text, so we can use an EXAMINE
 command instead.
+
+Only one transformation will be applied to any commands, so if you have both 
+`EXAMINE ELEVATOR: GO UP` and `GO UP: EXAMINE BROKEN_ELEVATOR` defined in 
+your 
+aliases, 
+players that try to `EXAMINE ELEVATOR` will get to move `UP`.
 
 Both the keys and values of aliases are commands, and so are case-insensitive.
 
 ## Map Serialization
 
-Map files are saved in JSON format, and may actually be far easier to edit 
-directly than using the editor (that's why we prototype...)
+Map files are saved in JSON format. The JSON files may be easier to 
+edit 
+directly compared to using the editor.
 
 A minimum example file looks like this:
 
@@ -230,12 +257,13 @@ The `mapDescription` and `mapName` fields are only used in the map browser.
 The `placedItems` dictionary is a collection of all the items in a map, 
 keyed by their 
 position in the editor's grid. The placed item keys are integer coordinates 
-joined by a comma. Items with 
+joined by a comma.
+>(Items with 
 badly formatted 
 keys should just be moved to an inaccessible place on the grid (100, 100) by 
 when the file is read. 
 Items not visible on the grid should still be usable during play, you just 
-won't be able to edit them via the built-in editor.
+won't be able to edit them via the built-in editor.)
 
 On items, `color` is a hex-code _without_ a prefixed `#`. The `uniqueName` 
 field is the unique identifier of the item.
