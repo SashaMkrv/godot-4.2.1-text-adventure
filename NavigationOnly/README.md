@@ -95,8 +95,7 @@ it like scenery, and you can enter it like a room. They're all the same. You
 just can't easily pick the apple up, add it to an inventory, and move it around 
 arbitrarily, because 
 that's 
-state, of which we have only a single string: the identifier of the current 
-room.
+state, which this prototype does not want.
 
 ### Item Definitions
 
@@ -238,7 +237,7 @@ when the file is read.
 Items not visible on the grid should still be usable during play, you just 
 won't be able to edit them via the built-in editor.
 
-On items, `color` is a hex-code _without_ a prefixed `#`.
+On items, `color` is a hex-code _without_ a prefixed `#`. The `uniqueName` 
+field is the unique identifier of the item.
 
-Each of the item fields otherwise is as described in [Item Definitions]
-(#item-definitions).
+Each of the item fields otherwise is as described in [Item Definitions](#item-definitions).
